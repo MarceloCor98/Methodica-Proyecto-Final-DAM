@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title th:text="'Curso - ' + ${curso.nombre}"></title>
+
+		<link rel="icon" type="image/png" sizes="16x16" href="methodica_favicon.png">
+
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+			<div class="container">
+				<a class="navbar-brand mx-auto" href="/">
+					<img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
+				</a>
+				<div class="collapse navbar-collapse m">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active px-3"><a href="/inicio" class="nav-link letraBlanca" >INICIO</a></li>
+						<li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="/misCursos" class="nav-link letraBlanca">MIS CURSOS</a></li>
+						<li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca">METHODICA EXAMS</a></li>
+						<li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link letraBlanca">SALIR</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			
+		</nav>
+		<div class="d-flex justify-content-end align-items-start p-5 m-0">
+			
+			<div id="contenedorCursos" class="p-3 mr-3 col-8 border border-primary rounded-lg">
+				<div class="">
+					<span class="d-flex justify-content-between align-items-center">
+						<span th:text="${curso.nombre}" class="display-2">NOMBRE DEL CURSO</span>
+						<span>
+							<span>Impartido por :</span>
+							<span th:text="${curso.profesor.nombre}"></span>
+						</span>
+					</span>
+					
+					<span th:text="${curso.descripcion}" class="lead">DESCRIPCION</span>
+				</div>
+				
+				<div th:each="t : ${listaTemas}">
+					<div class="card border-primary rounded-lg  my-3 shadow-lg">
+						<span class="card-header bg-warning text-dark rounded-top d-flex justify-content-between align-items-center">
+							<span th:text="${t.nombre}" class="h1">TEMA</span>
+							<span class="h4">
+								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/editarTema/' + ${t.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
+								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/eliminarTema/' + ${t.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
+							</span>
+						</span>
+						
+						
+						<div class="card-body">
+							<div th:each="a : ${t.apartados}" class="h4">
+									<a th:href="@{'/apartado/' + ${a.id}}" th:text="${a.titulo}"></a>
+
+									<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/editarApartado/' + ${a.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
+									<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/eliminarApartado/' + ${a.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
+								
+							</div>
+							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/nuevoApartado/' + ${t.id}}" class="btn btn-primary mt-3">Nuevo apartado</a>
+						</div>
+					</div>
+					
+				</div>
+
+				<a th:href="@{'/nuevoTema/' + ${curso.id}}" class="btn btn-lg btn-warning text-dark font-weight-bold justify-content-end">Añadir tema</a>
+			</div>
+
+			<div id="contenedorFicheros" class="d-flex-column align-items-center py-3 px-5 col-3 border border-primary rounded-lg bg-light">
+				<h3 class="d-flex justify-content-center">APUNTES Y OTROS</h3>
+				<div th:each="t : ${listaTemas}" class="">
+					<div class="border-primary rounded-lg  my-3">
+						<span class="text-dark rounded-top d-flex justify-content-between align-items-center">
+							<span th:text="${t.nombre}" class="h4">TEMA</span>							
+						</span>
+
+						<div th:each="f : ${t.ficheros}">
+							<div class="my-2 d-flex justify-content-between">
+								<a th:href="@{'/descargarFichero/' + ${f.id}}"><span class="h5 mx-3" th:text="${f.nombre}">Nombre fichero</span></a>
+								<a th:href="@{'/eliminarFichero/' + ${f.id}}" class="text-dark h5"><i class="fa fa-times" aria-hidden="true"></i></a>	
+							</div>
+						</div>
+						<a th:href="@{'/nuevoFichero/' + ${t.id}}" class="text-dark h4"><i class="fa fa-plus-square" aria-hidden="true"></i></a>	
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

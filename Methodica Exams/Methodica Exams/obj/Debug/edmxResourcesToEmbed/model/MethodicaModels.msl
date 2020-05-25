@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="methodicadbModelStoreContainer" CdmEntityContainer="methodicadbEntities">
+    <EntitySetMapping Name="alumnos">
+      <EntityTypeMapping TypeName="methodicadbModel.alumnos">
+        <MappingFragment StoreEntitySet="alumnos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="apartados">
+      <EntityTypeMapping TypeName="methodicadbModel.apartados">
+        <MappingFragment StoreEntitySet="apartados">
+          <ScalarProperty Name="id_apartado" ColumnName="id_apartado" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cursos">
+      <EntityTypeMapping TypeName="methodicadbModel.cursos">
+        <MappingFragment StoreEntitySet="cursos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="examenes">
+      <EntityTypeMapping TypeName="methodicadbModel.examenes">
+        <MappingFragment StoreEntitySet="examenes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="corregido" ColumnName="corregido" />
+          <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ficheros">
+      <EntityTypeMapping TypeName="methodicadbModel.ficheros">
+        <MappingFragment StoreEntitySet="ficheros">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ruta" ColumnName="ruta" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notas">
+      <EntityTypeMapping TypeName="methodicadbModel.notas">
+        <MappingFragment StoreEntitySet="notas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nota" ColumnName="nota" />
+          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+          <ScalarProperty Name="id_examen" ColumnName="id_examen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="preguntas">
+      <EntityTypeMapping TypeName="methodicadbModel.preguntas">
+        <MappingFragment StoreEntitySet="preguntas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="puntuacion" ColumnName="puntuacion" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+          <ScalarProperty Name="id_examen" ColumnName="id_examen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesores">
+      <EntityTypeMapping TypeName="methodicadbModel.profesores">
+        <MappingFragment StoreEntitySet="profesores">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="respuestas">
+      <EntityTypeMapping TypeName="methodicadbModel.respuestas">
+        <MappingFragment StoreEntitySet="respuestas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
+          <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temas">
+      <EntityTypeMapping TypeName="methodicadbModel.temas">
+        <MappingFragment StoreEntitySet="temas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="methodicadbModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="matriculas" TypeName="methodicadbModel.matriculas" StoreEntitySet="matriculas">
+      <EndProperty Name="alumnos">
+        <ScalarProperty Name="id" ColumnName="id_alumno" />
+      </EndProperty>
+      <EndProperty Name="cursos">
+        <ScalarProperty Name="id" ColumnName="id_curso" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,62 @@
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Methodica Exams.exe.config
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Methodica Exams.exe
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Methodica Exams.pdb
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\EntityFramework.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\MySql.Data.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\MySql.Data.EntityFramework.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Google.Protobuf.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Renci.SshNet.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\EntityFramework.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\MySql.Data.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\MySql.Data.EntityFramework.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\App.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams_MarkupCompile.cache
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams_MarkupCompile.lref
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.g.resources
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica_Exams.Properties.Resources.resources
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csproj.GenerateResource.cache
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csproj.CopyComplete
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.exe
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.pdb
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\Login.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams_Content.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\Login.baml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\ProfesorVentana.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Buffers.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Memory.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Buffers.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Memory.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\ProfesorVentana.baml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\AlumnoVentana.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\AlumnoVentana.baml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csproj.Fody.CopyLocal.cache
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\ConstruirExamenDialogo.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\ConstruirExamenDialogo.baml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csprojAssemblyReference.cache

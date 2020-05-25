@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="utf-8">
+		<title>Starter Template for Bootstrap</title>
+		
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/miCss/inicio.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+			<div class="container">
+				<a class="navbar-brand mx-auto" href="/">
+					<img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
+				</a>
+				<div class="collapse navbar-collapse m">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active px-3"><a href="/inicio" class="nav-link letraBlanca" >INICIO</a></li>
+						<li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="/misCursos" class="nav-link letraBlanca">MIS CURSOS</a></li>
+						<li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca">METHODICA EXAMS</a></li>
+						<li class="nav-item active px-3" sec:authorize="!isAuthenticated()"><a href="/login" class="nav-link letraBlanca">INICIAR SESIÓN</a></li>
+						<li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link letraBlanca">SALIR</a></li>
+				</div>
+			</div>
+			
+			
+		</nav>
+		<div id="contenedorCursos" class="d-flex flex-column align-items-center justify-content-center p-3">
+			<div th:each="c : ${listaCursos}" class="card border-primary h-100 rounded-lg col-6 m-3 bg-light">
+				<div class="card-body d-flex flex-column align-items-start">
+					<h4 class="card-title text-primary" th:text="${c.nombre}">Curso</h4>
+					<p class="card-text" th:text="${c.descripcion}"></p>
+					<a th:href="@{'/curso/' + ${c.id}}" class="btn btn-primary mt-auto">Ir al curso</a>
+					<span class="mt-2">
+						<a th:href="@{'/editarCurso/' + ${c.id}}" class="btn btn-dark m-auto" sec:authorize="hasRole('ROLE_ADMIN')">Editar curso</a>
+						<a th:href="@{'/eliminarCurso/' + ${c.id}}" class="btn btn-outline-danger m-auto" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar curso</a>
+					</span>
+					
+				</div>
+			</div>
+			<a th:href="@{/nuevoCurso}" class="btn btn-lg btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">Añadir curso</a>
+		</div>
+
+		<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+	</body>
+</html>

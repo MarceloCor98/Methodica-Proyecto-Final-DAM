@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="methodicadbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="alumnos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nac" Type="DateTime" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cursos" Relationship="Self.matriculas" FromRole="alumnos" ToRole="cursos" />
+  </EntityType>
+  <EntityType Name="apartados">
+    <Key>
+      <PropertyRef Name="id_apartado" />
+    </Key>
+    <Property Name="id_apartado" Type="Int64" Nullable="false" />
+    <Property Name="contenido" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_tema" Type="Int64" />
+    <NavigationProperty Name="temas" Relationship="Self.FKmkyx2tw03t0lsbwnfkjlc5r4q" FromRole="apartados" ToRole="temas" />
+  </EntityType>
+  <EntityType Name="cursos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_profesor" Type="Int64" />
+    <NavigationProperty Name="temas" Relationship="Self.FK5ncs2c7mkluqamgmduahhqaqh" FromRole="cursos" ToRole="temas" />
+    <NavigationProperty Name="profesores" Relationship="Self.FKfn9pv90388tytp0wjd9s0s39u" FromRole="cursos" ToRole="profesores" />
+    <NavigationProperty Name="alumnos" Relationship="Self.matriculas" FromRole="cursos" ToRole="alumnos" />
+  </EntityType>
+  <EntityType Name="ficheros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ruta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_tema" Type="Int64" />
+    <NavigationProperty Name="temas" Relationship="Self.FKjm9ky6tq7t6bbwxcsrvgjf6cx" FromRole="ficheros" ToRole="temas" />
+  </EntityType>
+  <EntityType Name="profesores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nac" Type="DateTime" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cursos" Relationship="Self.FKfn9pv90388tytp0wjd9s0s39u" FromRole="profesores" ToRole="cursos" />
+  </EntityType>
+  <EntityType Name="temas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_curso" Type="Int64" />
+    <NavigationProperty Name="apartados" Relationship="Self.FKmkyx2tw03t0lsbwnfkjlc5r4q" FromRole="temas" ToRole="apartados" />
+    <NavigationProperty Name="cursos" Relationship="Self.FK5ncs2c7mkluqamgmduahhqaqh" FromRole="temas" ToRole="cursos" />
+    <NavigationProperty Name="ficheros" Relationship="Self.FKjm9ky6tq7t6bbwxcsrvgjf6cx" FromRole="temas" ToRole="ficheros" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="roles" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FKmkyx2tw03t0lsbwnfkjlc5r4q">
+    <End Role="temas" Type="Self.temas" Multiplicity="0..1" />
+    <End Role="apartados" Type="Self.apartados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="apartados">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK5ncs2c7mkluqamgmduahhqaqh">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="0..1" />
+    <End Role="temas" Type="Self.temas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="temas">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKfn9pv90388tytp0wjd9s0s39u">
+    <End Role="profesores" Type="Self.profesores" Multiplicity="0..1" />
+    <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cursos">
+        <PropertyRef Name="id_profesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKjm9ky6tq7t6bbwxcsrvgjf6cx">
+    <End Role="temas" Type="Self.temas" Multiplicity="0..1" />
+    <End Role="ficheros" Type="Self.ficheros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ficheros">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="matriculas">
+    <End Role="alumnos" Type="Self.alumnos" Multiplicity="*" />
+    <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="methodicadbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="alumnos" EntityType="Self.alumnos" />
+    <EntitySet Name="apartados" EntityType="Self.apartados" />
+    <EntitySet Name="cursos" EntityType="Self.cursos" />
+    <EntitySet Name="ficheros" EntityType="Self.ficheros" />
+    <EntitySet Name="profesores" EntityType="Self.profesores" />
+    <EntitySet Name="temas" EntityType="Self.temas" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <AssociationSet Name="FKmkyx2tw03t0lsbwnfkjlc5r4q" Association="Self.FKmkyx2tw03t0lsbwnfkjlc5r4q">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="apartados" EntitySet="apartados" />
+    </AssociationSet>
+    <AssociationSet Name="FK5ncs2c7mkluqamgmduahhqaqh" Association="Self.FK5ncs2c7mkluqamgmduahhqaqh">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="temas" EntitySet="temas" />
+    </AssociationSet>
+    <AssociationSet Name="FKfn9pv90388tytp0wjd9s0s39u" Association="Self.FKfn9pv90388tytp0wjd9s0s39u">
+      <End Role="profesores" EntitySet="profesores" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FKjm9ky6tq7t6bbwxcsrvgjf6cx" Association="Self.FKjm9ky6tq7t6bbwxcsrvgjf6cx">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="ficheros" EntitySet="ficheros" />
+    </AssociationSet>
+    <AssociationSet Name="matriculas" Association="Self.matriculas">
+      <End Role="alumnos" EntitySet="alumnos" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

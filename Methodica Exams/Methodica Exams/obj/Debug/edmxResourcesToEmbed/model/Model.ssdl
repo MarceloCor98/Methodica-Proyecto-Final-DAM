@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="methodicadbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="alumnos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="apellidos" Type="varchar" MaxLength="255" />
+    <Property Name="dni" Type="varchar" MaxLength="255" />
+    <Property Name="fecha_nac" Type="date" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="apartados">
+    <Key>
+      <PropertyRef Name="id_apartado" />
+    </Key>
+    <Property Name="id_apartado" Type="bigint" Nullable="false" />
+    <Property Name="contenido" Type="longtext" />
+    <Property Name="titulo" Type="varchar" MaxLength="255" />
+    <Property Name="id_tema" Type="bigint" />
+  </EntityType>
+  <EntityType Name="cursos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="255" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="id_profesor" Type="bigint" />
+  </EntityType>
+  <EntityType Name="ficheros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="ruta" Type="varchar" MaxLength="255" />
+    <Property Name="tipo" Type="varchar" MaxLength="255" />
+    <Property Name="id_tema" Type="bigint" />
+  </EntityType>
+  <EntityType Name="matriculas">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+      <PropertyRef Name="id_curso" />
+    </Key>
+    <Property Name="id_alumno" Type="bigint" Nullable="false" />
+    <Property Name="id_curso" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="profesores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="apellidos" Type="varchar" MaxLength="255" />
+    <Property Name="dni" Type="varchar" MaxLength="255" />
+    <Property Name="fecha_nac" Type="date" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="temas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="id_curso" Type="bigint" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="roles" Type="varchar" MaxLength="255" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK5ncs2c7mkluqamgmduahhqaqh">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="0..1" />
+    <End Role="temas" Type="Self.temas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="temas">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK744x94g7osdveu4rptfws0tb3">
+    <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
+    <End Role="matriculas" Type="Self.matriculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumnos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matriculas">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKfn9pv90388tytp0wjd9s0s39u">
+    <End Role="profesores" Type="Self.profesores" Multiplicity="0..1" />
+    <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cursos">
+        <PropertyRef Name="id_profesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKjm9ky6tq7t6bbwxcsrvgjf6cx">
+    <End Role="temas" Type="Self.temas" Multiplicity="0..1" />
+    <End Role="ficheros" Type="Self.ficheros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ficheros">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKlbcju6f4gktd7p4mb1jx3njgk">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
+    <End Role="matriculas" Type="Self.matriculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matriculas">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKmkyx2tw03t0lsbwnfkjlc5r4q">
+    <End Role="temas" Type="Self.temas" Multiplicity="0..1" />
+    <End Role="apartados" Type="Self.apartados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="apartados">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="methodicadbModelStoreContainer">
+    <EntitySet Name="alumnos" EntityType="Self.alumnos" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="apartados" EntityType="Self.apartados" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="cursos" EntityType="Self.cursos" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="ficheros" EntityType="Self.ficheros" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="matriculas" EntityType="Self.matriculas" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="profesores" EntityType="Self.profesores" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="temas" EntityType="Self.temas" Schema="methodicadb" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="methodicadb" store:Type="Tables" />
+    <AssociationSet Name="FK5ncs2c7mkluqamgmduahhqaqh" Association="Self.FK5ncs2c7mkluqamgmduahhqaqh">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="temas" EntitySet="temas" />
+    </AssociationSet>
+    <AssociationSet Name="FK744x94g7osdveu4rptfws0tb3" Association="Self.FK744x94g7osdveu4rptfws0tb3">
+      <End Role="alumnos" EntitySet="alumnos" />
+      <End Role="matriculas" EntitySet="matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FKfn9pv90388tytp0wjd9s0s39u" Association="Self.FKfn9pv90388tytp0wjd9s0s39u">
+      <End Role="profesores" EntitySet="profesores" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FKjm9ky6tq7t6bbwxcsrvgjf6cx" Association="Self.FKjm9ky6tq7t6bbwxcsrvgjf6cx">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="ficheros" EntitySet="ficheros" />
+    </AssociationSet>
+    <AssociationSet Name="FKlbcju6f4gktd7p4mb1jx3njgk" Association="Self.FKlbcju6f4gktd7p4mb1jx3njgk">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="matriculas" EntitySet="matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FKmkyx2tw03t0lsbwnfkjlc5r4q" Association="Self.FKmkyx2tw03t0lsbwnfkjlc5r4q">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="apartados" EntitySet="apartados" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

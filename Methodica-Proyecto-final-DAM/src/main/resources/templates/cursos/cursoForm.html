@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Methodica - Añadir curso</title>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/miCss/login.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand mx-auto" href="/">
+          <img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
+        </a>
+        <div class="collapse navbar-collapse m">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca" >INICIO</a></li>
+            <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca">METHODICA EXAMS</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    </nav>
+    <div class="content">
+      <div id="contenedorFormulario" class="row align-items-center ml-0 mr-0">
+        <div class="container-fluid col-3 ">
+          <form  th:action="${curso.id != 0} ? @{/editarCurso/submit} : @{/nuevoCurso/submit}" th:object="${curso}" method="post" class="bg-white py-5 px-5 border border-primary rounded">
+
+            <h2 class="form-signin-heading" th:text="${accion}"></h2>
+
+            <input th:field="*{id}" type="hidden" id="id" name="id" class="form-control">
+
+            <div class="form-group">
+              <label for="nombreCurso" >Nombre del curso</label>
+              <input th:field="*{nombre}" type="text" id="nombre" name="nombre" class="form-control"
+              required >
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion" >Descripción</label>
+              <input th:field="*{descripcion}" type="text" id="descripcion" name="descripcion" class="form-control"
+              required >
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion" >Clave de matriculación</label>
+              <input th:field="*{claveMatricula}" type="text" id="clave" name="clave" class="form-control"
+              required >
+            </div>
+
+            <div class="form-group">
+              <label>Profesor que lo imparte</label>
+              <select name="idProfesor">
+               <option th:if="${curso.id == 0}">Seleccione profesor</option>
+                <option th:each="p : ${listaProfesores}" th:value="${p.id}" th:utext="${p.nombre}" th:selected="${p.id} == *{profesor.id}"></option>
+              </select>
+            </div> 
+                 
+                 <button class="btn btn-primary fondoMorado btn-lg btn-block" type="submit" th:text="${accion}"></button>     
+
+      </div>
+
+            
+          </form>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </body>
+</html>

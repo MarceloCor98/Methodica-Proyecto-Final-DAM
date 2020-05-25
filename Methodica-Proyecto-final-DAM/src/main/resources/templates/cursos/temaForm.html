@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title th:text="'Methodica - ' + ${accion}"></title>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand mx-auto" href="/">
+          <img src="../static/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
+        </a>
+        <div class="collapse navbar-collapse m">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca" >INICIO</a></li>
+            <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca">METHODICA EXAMS</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+    </nav>
+    <div class="content">
+      <div id="contenedorFormulario" class="row align-items-center ml-0 mr-0">
+        <div class="container-fluid col-8 ">
+          <form  th:action="${tema.id != 0} ? @{/editarTema/submit} : @{/nuevoTema/submit}" th:object="${tema}" method="post" class="bg-white border border-primary rounded">
+
+            <h2 class="form-signin-heading" th:text="${accion}">Acción</h2>
+            <input th:field="*{curso.id}" type="hidden" id="idCurso" name="idCurso">
+            <input th:field="*{id}" type="hidden" id="id" name="id">
+
+            <div class="form-group">
+              <label for="nombre" >Nombre del tema</label>
+              <input th:field="*{nombre}" type="text" id="nombre" name="nombre" class="form-control"
+              required >
+            </div>  
+
+            <button class="btn btn-primary fondoMorado btn-lg btn-block"  type="submit" th:text="${accion}"></button>
+          </form>
+          </div>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+    <script src="../ckeditor/ckeditor.js"></script>
+    <script>
+      CKEDITOR.replace('contenido')
+    </script>
+  </body>
+</html>
