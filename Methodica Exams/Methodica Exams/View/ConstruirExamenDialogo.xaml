@@ -8,7 +8,7 @@
         Icon="../resources/images/methodica_favicon.png"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Methodica - Construir examen" Height="800" Width="800">
+        Title="Methodica - Construir examen" Height="800" Width="900">
     <Window.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Green"></Setter>
@@ -106,6 +106,33 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="ButtonConfirmStyle" TargetType="{x:Type Button}">
+            <Border x:Name="border" BorderBrush="#13B955" BorderThickness="{TemplateBinding BorderThickness}" Background="#13B955" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="#FC3939"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
+                    <Setter Property="Foreground" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </Window.Resources>
 
 
@@ -124,33 +151,36 @@
                 <DockPanel Margin="25,0,0,10" DockPanel.Dock="Bottom" LastChildFill="False">
                 
                     <Button Template="{StaticResource ButtonDeleteStyle}" x:Name="EliminarPreguntaButton" Cursor="Hand" Background="#FC3939" Foreground="White" HorizontalAlignment="Left" Padding="5" FontSize="15" Margin="5"  Click="EliminarPreguntaButton_Click">Eliminar pregunta</Button>
-                    <Button Template="{StaticResource ButtonPrimaryStyle}" DockPanel.Dock="Right" Cursor="Hand" Foreground="White" BorderBrush="#593196" Background="#593196" x:Name="AceptarButton" Margin="10,0" FontSize="20" Padding="10,5" VerticalAlignment="Center"  Click="AceptarButton_Click" IsDefault="True">Aceptar</Button>
+                    <Button Template="{StaticResource ButtonConfirmStyle}" DockPanel.Dock="Right" Cursor="Hand" Foreground="White" BorderBrush="#593196" Background="#593196" x:Name="AceptarButton" Margin="10,0" FontSize="20" Padding="10,5" VerticalAlignment="Center"  Click="AceptarButton_Click" IsDefault="True">Aceptar</Button>
                 </DockPanel>
 
 
 
                 <DockPanel Margin="30,10,30,0" DockPanel.Dock="Top">
 
-                    
+
 
                     <DockPanel DockPanel.Dock="Right" Margin="5,0,5,0">
                         <TextBlock FontSize="18" DockPanel.Dock="Top" Margin="10,10,10,30">Puntuacion</TextBlock>
                         <Button Template="{StaticResource ButtonPrimaryStyle}" Cursor="Hand" Foreground="White" BorderBrush="#593196" Background="#593196" x:Name="AñadirPreguntaButton" Padding="5" FontSize="15"  Margin="5,20,5,0" DockPanel.Dock="Bottom"  Click="AñadirPreguntaButton_Click">Añadir</Button>
-                        <TextBox Template="{StaticResource TextBoxTemplate}" BorderBrush="#593196" x:Name="PuntuatcionTextBox" DockPanel.Dock="Top" FontSize="15" Text="{Binding NuevaPregunta.puntuacion,StringFormat=N1}" Width="35"></TextBox>
-                        
+                        <TextBox Template="{StaticResource TextBoxTemplate}" BorderBrush="#593196" x:Name="PuntuatcionTextBox" DockPanel.Dock="Top" FontSize="15" Text="{Binding NuevaPregunta.puntuacion,StringFormat=F1}" Width="35"></TextBox>
+
                     </DockPanel>
-                    
+
                     <StackPanel>
                         <TextBlock FontSize="18" Margin="0,10">Pregunta</TextBlock>
                         <TextBox Template="{StaticResource TextBoxTemplate}" BorderBrush="#593196" x:Name="TextoPreguntaTextBox" TextWrapping="Wrap" Height="100" FontSize="15" Text="{Binding NuevaPregunta.texto}"></TextBox>
-                    </StackPanel>                  
-                    
-                </DockPanel>
+                    </StackPanel>
 
-                <ListBox x:Name="PreguntasListBox" Margin="30,20,150,20" BorderBrush="#593196" ItemsSource="{Binding Examen.preguntas}" SelectedItem="{Binding PreguntaSeleccionada}">
+                </DockPanel>
+                <TextBlock Margin="30,0,0,20" FontSize="20" FontWeight="Bold" FontFamily="Times New Roman" x:Name="NotaTotalTextBox" DockPanel.Dock="Bottom" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Run Text="Nota total :"></Run>
+                        <Run Text="{Binding NotaTotal}"></Run>
+                </TextBlock>
+                <ListBox x:Name="PreguntasListBox" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Margin="30,20,150,20" BorderBrush="#593196" ItemsSource="{Binding Examen.preguntas}" SelectedItem="{Binding PreguntaSeleccionada}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock FontSize="15">
+                            <TextBlock FontSize="15" TextWrapping="Wrap">
                                 <Run Text="- "></Run>
                                 <Run Text="{Binding texto,UpdateSourceTrigger=PropertyChanged}"></Run>
                                 <Run Text=" ("></Run>
@@ -161,6 +191,8 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 
+
+
             </DockPanel>
         </Border>
         

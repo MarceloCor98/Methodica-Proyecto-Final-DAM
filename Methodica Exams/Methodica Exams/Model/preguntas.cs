@@ -21,7 +21,7 @@ namespace Methodica_Exams.Model
         }
     
         public long id { get; set; }
-        public int puntuacion { get; set; }
+        public float puntuacion { get; set; }
         public string texto { get; set; }
         public Nullable<long> id_examen { get; set; }
     

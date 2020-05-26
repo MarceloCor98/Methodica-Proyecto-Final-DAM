@@ -15,6 +15,7 @@ namespace Methodica_Exams.Model
     public partial class respuestas
     {
         public long id { get; set; }
+        public float puntuacion { get; set; }
         public string texto { get; set; }
         public Nullable<long> id_alumno { get; set; }
         public Nullable<long> id_pregunta { get; set; }

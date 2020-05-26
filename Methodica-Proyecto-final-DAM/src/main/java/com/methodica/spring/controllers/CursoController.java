@@ -56,8 +56,9 @@ public class CursoController {
 		 if (u.getRoles().contains("ROLE_PROFESOR")) {
 			Profesor p = profesorServicio.findByUsername(u.getUsername());
 			if(!(c.getProfesor().getId() == p.getId())) {
+				model.addAttribute("titulo","Contenido no accesible");
 				model.addAttribute("mensaje","El curso al que intenta acceder no es de su propiedad, contacte con un administrador para conseguir privilegios.");
-				return "contenidoNoAccesible";
+				return "errores/error";
 			}
 		}
 				
@@ -148,6 +149,9 @@ public class CursoController {
 		}	
 		
 		temaServicio.deleteByCurso(c);
+		
+		for(Alumno a : c.getAlumnosMatriculados())
+			a.deleteCurso(c);
 		
 		c.setProfesor(null);
 		

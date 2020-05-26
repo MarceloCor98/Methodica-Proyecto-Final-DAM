@@ -80,11 +80,11 @@
             <TextBlock x:Name="ErrorAuthTextBlock" Foreground="Red" Visibility="Hidden">Nombre de usuario o contraseña no válidos</TextBlock>
             <StackPanel Margin="0,0,0,15">
                 <TextBlock Margin="0,0,0,5" FontSize="15" FontWeight="DemiBold">Nombre de usuario</TextBlock>
-                <TextBox x:Name="NombreUsuarioTextBox" Template="{StaticResource TextBoxTemplate}" FontSize="15" Padding="3"></TextBox>
+                <TextBox Text="{Binding UsuarioLogueado.username}" x:Name="NombreUsuarioTextBox" Template="{StaticResource TextBoxTemplate}" FontSize="15" Padding="3"></TextBox>
             </StackPanel>
             <StackPanel Margin="0,0,0,30">
                 <TextBlock Margin="0,0,0,5" FontSize="15" FontWeight="DemiBold">Contraseña</TextBlock>
-                <PasswordBox  x:Name="PasswordBox" FontSize="15" Padding="3" Template="{DynamicResource PasswordBoxTemplate}"></PasswordBox>
+                <PasswordBox x:Name="PasswordBox" FontSize="15" Padding="3" Template="{DynamicResource PasswordBoxTemplate}"></PasswordBox>
             </StackPanel>
             <Button x:Name="IniciarSesionButton" IsDefault="True" Cursor="Hand" Foreground="White" Background="#593196" BorderBrush="#593196" Padding="3" FontSize="15" Template="{DynamicResource ButtonPrimaryStyle}" Click="IniciarSesionButton_Click">Iniciar sesión</Button>
             <TextBlock x:Name="AutenticandoTextBlock" Visibility="Hidden">Autenticado ...</TextBlock>

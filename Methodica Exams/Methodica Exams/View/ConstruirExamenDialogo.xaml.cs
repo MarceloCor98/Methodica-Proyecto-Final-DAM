@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,7 +36,9 @@ namespace Methodica_Exams.View
 
         private void AñadirPreguntaButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TextoPreguntaTextBox.Text != "" && float.Parse(PuntuatcionTextBox.Text) > 0f)
+            float puntuacion = (this.DataContext as ConstruirExamenVM).NuevaPregunta.puntuacion;
+
+            if (TextoPreguntaTextBox.Text != "" && (float)(puntuacion) > 0f)
             {
                 (this.DataContext as ConstruirExamenVM).AñadirPregunta();
                 Refrescar();
@@ -49,7 +52,8 @@ namespace Methodica_Exams.View
         {
             if ((this.DataContext as ConstruirExamenVM).PreguntaSeleccionada != null)
             {
-                BBDDService.DeletePregunta((this.DataContext as ConstruirExamenVM).PreguntaSeleccionada);
+                (this.DataContext as ConstruirExamenVM).EliminarPregunta();
+                
                 Refrescar();
             }
             else
@@ -64,7 +68,6 @@ namespace Methodica_Exams.View
             PreguntasListBox.DataContext = null;
             PreguntasListBox.DataContext = this.DataContext;
         }
-        
         
     }
 }

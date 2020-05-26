@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Methodica - Contenido no accesible</title>
+		<title>Methodica - Error</title>
 		
 		
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
@@ -31,7 +31,7 @@
 			<div class="card text-white bg-danger mb-3" >
 				<div class="card-header">Error</div>
 				<div class="card-body">
-					<h5 class="card-title">Error de acceso a curso</h5>
+					<h5 class="card-title" th:text="${titulo}">Error de acceso a curso</h5>
 					<p class="card-text" th:text="${mensaje}">Mensaje</p>
 				</div>
 			</div>

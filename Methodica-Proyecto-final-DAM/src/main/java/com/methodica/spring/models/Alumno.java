@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -126,10 +127,17 @@ public class Alumno {
 
 
 	public void setCursos(Set<Curso> cursos) {
-		for(Curso c : cursos){
-			c.getAlumnosMatriculados().add(this);
-		}
 		this.cursos = cursos;
+	}
+	
+	public void addCurso(Curso c) {
+		this.cursos.add(c);
+		c.getAlumnosMatriculados().add(this);
+	}
+	
+	public void deleteCurso(Curso c) {
+		this.cursos.remove(c);
+		c.getAlumnosMatriculados().remove(this);
 	}
 
 

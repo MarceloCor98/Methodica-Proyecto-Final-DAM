@@ -56,7 +56,7 @@ public class InicioController {
 			
 			Alumno a = alumnoServicio.findByUsername(authentication.getName());
 			
-			a.getCursos().add(curso);
+			a.addCurso(curso);
 			
 			alumnoServicio.editar(a);
 		}
@@ -67,7 +67,7 @@ public class InicioController {
 		}
 		
 		
-		return "redirect:/inicio";
+		return "redirect:/curso/" + curso.getId();
 	}
 
 }

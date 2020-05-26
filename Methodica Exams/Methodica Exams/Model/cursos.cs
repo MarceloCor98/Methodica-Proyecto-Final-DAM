@@ -23,6 +23,7 @@ namespace Methodica_Exams.Model
         }
     
         public long id { get; set; }
+        public string clave_matricula { get; set; }
         public string descripcion { get; set; }
         public string nombre { get; set; }
         public Nullable<long> id_profesor { get; set; }

@@ -67,5 +67,12 @@ namespace Methodica_Exams.View
             login.Show();
             Close();
         }
+
+        private void ActivarExamenButton_Click(object sender, RoutedEventArgs e)
+        {
+            long idExamen = long.Parse((sender as Button).Tag.ToString());
+            (this.DataContext as ProfesorVM).ActivarDesactivarExamen(idExamen);
+            Refrescar();
+        }
     }
 }

@@ -16,10 +16,13 @@ namespace Methodica_Exams.Services
         {
             contexto = new methodicadbEntities();
             contexto.usuarios.Load();
+            contexto.alumnos.Load();
             contexto.cursos.Load();
             contexto.profesores.Load();
             contexto.examenes.Load();
             contexto.preguntas.Load();
+            contexto.respuestas.Load();
+            contexto.notas.Load();
 
         }
 
@@ -38,8 +41,16 @@ namespace Methodica_Exams.Services
         {
             var usuario = (from u in contexto.usuarios
                            where u.username == username
-                           select u).First();
-            return usuario;
+                           select u);
+            return usuario.First();
+        }
+
+        public static bool usuarioExiste(string username)
+        {
+            var usuario = (from u in contexto.usuarios
+                           where u.username == username
+                           select u);
+            return usuario.Count() > 0;
         }
 
         // PROFESORES
@@ -51,7 +62,22 @@ namespace Methodica_Exams.Services
             return profesor;
         }
 
+        // ALUMNOS
+
+        public static alumnos getAlumnoByUsername(string username)
+        {
+            var alumno = (from a in contexto.alumnos
+                          where a.username == username
+                            select a).First();
+            return alumno;
+        }
+
         // CURSOS
+
+        public static ObservableCollection<cursos> getCursos()
+        {
+            return contexto.cursos.Local;
+        }
         public static cursos getCurso(string nombre)
         {
             var curso = (from c in contexto.cursos
@@ -70,10 +96,18 @@ namespace Methodica_Exams.Services
 
         // EXAMENES
 
+        public static ObservableCollection<examenes> getExamenesActivos(long idCurso)
+        {
+            var examenes = (from e in contexto.examenes
+                            where e.activo && e.id_curso == idCurso
+                            select e);
+            return new ObservableCollection<examenes>(examenes);
+        }
+
         public static void AddExamen(examenes examen)
         {
             contexto.examenes.Add(examen);
-            contexto.SaveChanges();
+            Guardar();
         }
 
         public static void DeleteExamen(examenes examen)
@@ -96,7 +130,7 @@ namespace Methodica_Exams.Services
             contexto.preguntas.RemoveRange(preguntas);
 
             contexto.examenes.Remove(getExamenById(idExamen));
-            contexto.SaveChanges();
+            Guardar();
         }
 
         public static examenes getExamenById(long id)
@@ -105,6 +139,51 @@ namespace Methodica_Exams.Services
                          where e.id == id
                          select e).First();
             return examen;
+        }
+
+        public static bool isExamenYaRealizadoPorAlumno(alumnos alumno,long idExamen)
+        {
+            var respuestas = (from r in contexto.respuestas
+                              where r.id_alumno == alumno.id && r.preguntas.id_examen == idExamen
+                              select r);
+            return respuestas.Count() > 0 ;
+        }
+
+        public static ObservableCollection<examenes> getExamenesCorregidosByCurso(long idCurso)
+        {
+            var examenes = (from e in contexto.examenes
+                          where e.id_curso == idCurso && e.corregido
+                          select e);
+            return new ObservableCollection<examenes>(examenes);
+        }
+
+        // NOTAS
+
+        public static void AddNota(notas nota)
+        {
+            contexto.notas.Add(nota);
+            Guardar();
+        }
+
+        public static ObservableCollection<notas> getNotasByCurso(long idCurso)
+        {
+            var notas = (from n in contexto.notas
+                        where n.examenes.id_curso == idCurso && n.examenes.corregido
+                        select n);
+            return new ObservableCollection<notas>(notas);
+        }
+
+        public static ObservableCollection<notas> getNotasByTema(long idTema)
+        {
+            var notas = (from n in contexto.notas
+                         where n.examenes.id_tema == idTema && n.examenes.corregido
+                         select n);
+            return new ObservableCollection<notas>(notas);
+        }
+
+        public static ObservableCollection<notas> getNotas()
+        {
+            return contexto.notas.Local;
         }
 
         // TEMAS 
@@ -122,12 +201,17 @@ namespace Methodica_Exams.Services
         public static void AddPregunta(preguntas pregunta)
         {
             contexto.preguntas.Add(pregunta);
-            contexto.SaveChanges();
+            Guardar();
         }
 
         public static void DeletePregunta(preguntas pregunta)
         {
             contexto.preguntas.Remove(pregunta);
+            Guardar();
+        }
+
+        public static void Guardar()
+        {
             contexto.SaveChanges();
         }
     }

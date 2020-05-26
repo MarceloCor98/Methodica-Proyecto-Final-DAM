@@ -31,6 +31,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clave_matricula" Type="varchar" MaxLength="255" />
           <Property Name="descripcion" Type="varchar" MaxLength="255" />
           <Property Name="nombre" Type="varchar" MaxLength="255" />
           <Property Name="id_profesor" Type="bigint" />
@@ -66,10 +67,11 @@
         <EntityType Name="notas">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="id_alumno" />
           </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nota" Type="int" Nullable="false" />
-          <Property Name="id_alumno" Type="bigint" />
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="nota" Type="float" Nullable="false" />
+          <Property Name="id_alumno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_examen" Type="bigint" />
         </EntityType>
         <EntityType Name="preguntas">
@@ -77,8 +79,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="puntuacion" Type="int" Nullable="false" />
-          <Property Name="texto" Type="varchar" MaxLength="255" />
+          <Property Name="puntuacion" Type="float" Nullable="false" />
+          <Property Name="texto" Type="varchar" MaxLength="2000" />
           <Property Name="id_examen" Type="bigint" />
         </EntityType>
         <EntityType Name="profesores">
@@ -98,6 +100,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="puntuacion" Type="float" Nullable="false" />
           <Property Name="texto" Type="varchar" MaxLength="255" />
           <Property Name="id_alumno" Type="bigint" />
           <Property Name="id_pregunta" Type="bigint" />
@@ -228,7 +231,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKkpi11x15ctarnxg87ucpsjq2x">
-          <End Role="alumnos" Type="Self.alumnos" Multiplicity="0..1" />
+          <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
           <End Role="notas" Type="Self.notas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnos">
@@ -376,6 +379,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave_matricula" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="id_profesor" Type="Int64" />
@@ -412,10 +416,11 @@
         <EntityType Name="notas">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="id_alumno" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nota" Type="Int32" Nullable="false" />
-          <Property Name="id_alumno" Type="Int64" />
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="nota" Type="Single" Nullable="false" />
+          <Property Name="id_alumno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_examen" Type="Int64" />
           <NavigationProperty Name="alumnos" Relationship="Self.FKkpi11x15ctarnxg87ucpsjq2x" FromRole="notas" ToRole="alumnos" />
           <NavigationProperty Name="examenes" Relationship="Self.FKe5xd9gaehdea2fjedrvp2at5y" FromRole="notas" ToRole="examenes" />
@@ -425,8 +430,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="puntuacion" Type="Int32" Nullable="false" />
-          <Property Name="texto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="puntuacion" Type="Single" Nullable="false" />
+          <Property Name="texto" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="id_examen" Type="Int64" />
           <NavigationProperty Name="examenes" Relationship="Self.FKqwjopesuf628qxppf34r3wvfs" FromRole="preguntas" ToRole="examenes" />
           <NavigationProperty Name="respuestas" Relationship="Self.FKhpdeptdk3p3fu5l3i57h9bhn7" FromRole="preguntas" ToRole="respuestas" />
@@ -449,6 +454,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="puntuacion" Type="Single" Nullable="false" />
           <Property Name="texto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="id_alumno" Type="Int64" />
           <Property Name="id_pregunta" Type="Int64" />
@@ -489,7 +495,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKkpi11x15ctarnxg87ucpsjq2x">
-          <End Role="alumnos" Type="Self.alumnos" Multiplicity="0..1" />
+          <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
           <End Role="notas" Type="Self.notas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnos">
@@ -706,6 +712,7 @@
             <EntityTypeMapping TypeName="methodicadbModel.cursos">
               <MappingFragment StoreEntitySet="cursos">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clave_matricula" ColumnName="clave_matricula" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
@@ -771,6 +778,7 @@
             <EntityTypeMapping TypeName="methodicadbModel.respuestas">
               <MappingFragment StoreEntitySet="respuestas">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="puntuacion" ColumnName="puntuacion" />
                 <ScalarProperty Name="texto" ColumnName="texto" />
                 <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
                 <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />

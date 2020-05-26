@@ -1,5 +1,6 @@
 package com.methodica.spring.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +20,7 @@ public class Respuesta {
 	private long id;
 	
 	private String texto;
+	private float puntuacion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pregunta")
@@ -55,6 +57,14 @@ public class Respuesta {
 		this.texto = texto;
 	}
 
+	public float getPuntuacion() {
+		return puntuacion;
+	}
+
+	public void setPuntuacion(float puntuacion) {
+		this.puntuacion = puntuacion;
+	}
+
 	public Pregunta getPregunta() {
 		return pregunta;
 	}
@@ -78,6 +88,7 @@ public class Respuesta {
 		result = prime * result + ((alumno == null) ? 0 : alumno.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((pregunta == null) ? 0 : pregunta.hashCode());
+		result = prime * result + Float.floatToIntBits(puntuacion);
 		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
 		return result;
 	}
@@ -103,6 +114,8 @@ public class Respuesta {
 				return false;
 		} else if (!pregunta.equals(other.pregunta))
 			return false;
+		if (Float.floatToIntBits(puntuacion) != Float.floatToIntBits(other.puntuacion))
+			return false;
 		if (texto == null) {
 			if (other.texto != null)
 				return false;
@@ -113,8 +126,11 @@ public class Respuesta {
 
 	@Override
 	public String toString() {
-		return "Respuesta [id=" + id + ", texto=" + texto + ", pregunta=" + pregunta + ", alumno=" + alumno + "]";
+		return "Respuesta [id=" + id + ", texto=" + texto + ", puntuacion=" + puntuacion + ", pregunta=" + pregunta
+				+ ", alumno=" + alumno + "]";
 	}
+
+	
 	
 	
 }

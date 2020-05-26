@@ -15,20 +15,31 @@ namespace Methodica_Exams.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public profesores ProfesorLogueado { get; set; }
-        public ObservableCollection<cursos> cursosImpartidos { get; set; }
+        public ObservableCollection<cursos> CursosImpartidos { get; set; }
 
         public cursos CursoSeleccionado { get; set; }
 
         public ProfesorVM(usuarios usuarioLogueado)
         {
-            ProfesorLogueado = BBDDService.getProfesorByUsername(usuarioLogueado.username);
-            cursosImpartidos = BBDDService.getCursosByProfesor(ProfesorLogueado.id);
+            if (usuarioLogueado.roles.Contains("ROLE_ADMIN"))
+            {
+                CursosImpartidos = BBDDService.getCursos();
+                ProfesorLogueado = new profesores();
+                ProfesorLogueado.nombre = usuarioLogueado.username;
+            }
+            else
+            {
+                ProfesorLogueado = BBDDService.getProfesorByUsername(usuarioLogueado.username);
+                CursosImpartidos = BBDDService.getCursosByProfesor(ProfesorLogueado.id);
+            }
+            
         }
 
         public void AñadirExamen(long idTema)
         {
             examenes nuevoExamen = new examenes();
             nuevoExamen.temas = BBDDService.getTemaById(idTema);
+            nuevoExamen.cursos = nuevoExamen.temas.cursos;
             BBDDService.AddExamen(nuevoExamen);
 
         }
@@ -45,6 +56,11 @@ namespace Methodica_Exams.ViewModel
             construirExamenDialogo.ShowDialog();
         }
 
-        
+        public void ActivarDesactivarExamen(long idExamen)
+        {
+            examenes examen = BBDDService.getExamenById(idExamen);
+            examen.activo = !examen.activo;
+            BBDDService.Guardar();
+        }
     }
 }

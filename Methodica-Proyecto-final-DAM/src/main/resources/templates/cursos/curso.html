@@ -4,8 +4,6 @@
 		<meta charset="utf-8">
 		<title th:text="'Curso - ' + ${curso.nombre}"></title>
 
-		<link rel="icon" type="image/png" sizes="16x16" href="methodica_favicon.png">
-
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 		
@@ -49,8 +47,8 @@
 						<span class="card-header bg-warning text-dark rounded-top d-flex justify-content-between align-items-center">
 							<span th:text="${t.nombre}" class="h1">TEMA</span>
 							<span class="h4">
-								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/editarTema/' + ${t.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
-								<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/eliminarTema/' + ${t.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
+								<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/editarTema/' + ${t.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
+								<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/eliminarTema/' + ${t.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
 							</span>
 						</span>
 						
@@ -59,17 +57,17 @@
 							<div th:each="a : ${t.apartados}" class="h4">
 									<a th:href="@{'/apartado/' + ${a.id}}" th:text="${a.titulo}"></a>
 
-									<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/editarApartado/' + ${a.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
-									<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/eliminarApartado/' + ${a.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/editarApartado/' + ${a.id}}"><i class="fa fa-pencil fa-fw text-dark"></i></a>
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/eliminarApartado/' + ${a.id}}"><i class="fa fa-trash-o fa-fw text-dark"></i></a>
 								
 							</div>
-							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/nuevoApartado/' + ${t.id}}" class="btn btn-primary mt-3">Nuevo apartado</a>
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/nuevoApartado/' + ${t.id}}" class="btn btn-primary mt-3">Nuevo apartado</a>
 						</div>
 					</div>
 					
 				</div>
 
-				<a th:href="@{'/nuevoTema/' + ${curso.id}}" class="btn btn-lg btn-warning text-dark font-weight-bold justify-content-end">Añadir tema</a>
+				<a th:href="@{'/nuevoTema/' + ${curso.id}}" class="btn btn-lg btn-warning text-dark font-weight-bold justify-content-end" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')">Añadir tema</a>
 			</div>
 
 			<div id="contenedorFicheros" class="d-flex-column align-items-center py-3 px-5 col-3 border border-primary rounded-lg bg-light">
@@ -83,15 +81,16 @@
 						<div th:each="f : ${t.ficheros}">
 							<div class="my-2 d-flex justify-content-between">
 								<a th:href="@{'/descargarFichero/' + ${f.id}}"><span class="h5 mx-3" th:text="${f.nombre}">Nombre fichero</span></a>
-								<a th:href="@{'/eliminarFichero/' + ${f.id}}" class="text-dark h5"><i class="fa fa-times" aria-hidden="true"></i></a>	
+								<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/eliminarFichero/' + ${f.id}}" class="text-dark h5"><i class="fa fa-times" aria-hidden="true"></i></a>	
 							</div>
 						</div>
-						<a th:href="@{'/nuevoFichero/' + ${t.id}}" class="text-dark h4"><i class="fa fa-plus-square" aria-hidden="true"></i></a>	
+						<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PROFESOR')" th:href="@{'/nuevoFichero/' + ${t.id}}" class="text-dark h4"><i class="fa fa-plus-square" aria-hidden="true"></i></a>	
 					</div>
 					
 				</div>
 			</div>
 
 		</div>
+		<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
 	</body>
 </html>

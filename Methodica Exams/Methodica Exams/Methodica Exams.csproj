@@ -115,62 +115,67 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\alumnos.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\apartados.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\cursos.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\examenes.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ficheros.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\INotifyModelo.cs" />
-    <Compile Include="Model\MethodicaModels.Context.cs">
+    <Compile Include="Model\MethodicaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MethodicaModels.Context.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MethodicaModels.cs">
+    <Compile Include="Model\MethodicaModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MethodicaModels.Designer.cs">
+    <Compile Include="Model\MethodicaModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MethodicaModels.edmx</DependentUpon>
+      <DependentUpon>MethodicaModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\notas.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\preguntas.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\profesores.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\respuestas.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\temas.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\usuarios.cs">
-      <DependentUpon>MethodicaModels.tt</DependentUpon>
+      <DependentUpon>MethodicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CustomCommands.cs" />
+    <Compile Include="ViewModel\AlumnoVM.cs" />
     <Compile Include="ViewModel\ConstruirExamenVM.cs" />
+    <Compile Include="ViewModel\ExamenVM.cs" />
     <Compile Include="ViewModel\ProfesorVM.cs" />
     <Compile Include="View\AlumnoVentana.xaml.cs">
       <DependentUpon>AlumnoVentana.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ConstruirExamenDialogo.xaml.cs">
       <DependentUpon>ConstruirExamenDialogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Examen.xaml.cs">
+      <DependentUpon>Examen.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProfesorVentana.xaml.cs">
       <DependentUpon>ProfesorVentana.xaml</DependentUpon>
@@ -180,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ConstruirExamenDialogo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Examen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,12 +229,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\MethodicaModels.edmx">
+    <EntityDeploy Include="Model\MethodicaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MethodicaModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>MethodicaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\MethodicaModels.edmx.diagram">
-      <DependentUpon>MethodicaModels.edmx</DependentUpon>
+    <None Include="Model\MethodicaModel.edmx.diagram">
+      <DependentUpon>MethodicaModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -253,16 +262,19 @@
     <Resource Include="Resources\images\background_work.jpg" />
     <Resource Include="Resources\icons\methodica.ico" />
     <Resource Include="methodica.ico" />
-    <Content Include="Model\MethodicaModels.Context.tt">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\MethodicaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MethodicaModels.edmx</DependentUpon>
-      <LastGenOutput>MethodicaModels.Context.cs</LastGenOutput>
+      <DependentUpon>MethodicaModel.edmx</DependentUpon>
+      <LastGenOutput>MethodicaModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\MethodicaModels.tt">
+    <Content Include="Model\MethodicaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MethodicaModels.edmx</DependentUpon>
-      <LastGenOutput>MethodicaModels.cs</LastGenOutput>
+      <DependentUpon>MethodicaModel.edmx</DependentUpon>
+      <LastGenOutput>MethodicaModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\icons\logout.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

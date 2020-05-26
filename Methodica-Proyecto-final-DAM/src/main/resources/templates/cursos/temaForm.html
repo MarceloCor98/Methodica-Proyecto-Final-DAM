@@ -11,12 +11,13 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand mx-auto" href="/">
-          <img src="../static/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
+          <img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
         </a>
         <div class="collapse navbar-collapse m">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca" >INICIO</a></li>
+            <li class="nav-item active px-3"><a href="/inicio" class="nav-link letraBlanca" >INICIO</a></li>
             <li class="nav-item active px-3"><a href="/" class="nav-link letraBlanca">METHODICA EXAMS</a></li>
+            <li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link letraBlanca">SALIR</a></li>
           </ul>
         </div>
       </div>
@@ -44,12 +45,8 @@
         </div>
         
         
-        
+        <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
       </div>
     </div>
-    <script src="../ckeditor/ckeditor.js"></script>
-    <script>
-      CKEDITOR.replace('contenido')
-    </script>
   </body>
 </html>

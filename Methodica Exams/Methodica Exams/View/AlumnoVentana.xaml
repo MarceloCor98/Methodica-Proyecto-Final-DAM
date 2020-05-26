@@ -6,29 +6,288 @@
         xmlns:local="clr-namespace:Methodica_Exams.View"
         mc:Ignorable="d"
         Icon="../resources/images/methodica_favicon.png"
-        Title="Methodica - Panel de alumno" Height="450" Width="800">
-    <StackPanel>
-        <ListBox x:Name="TemaListBox" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock >
-                        <Run Text="{Binding id}"></Run>
-                        <Run Text=" - "></Run>
-                        <Run Text="{Binding nombre}"></Run>
-                        <ListBox x:Name="ApartadoListBox" ItemsSource="{Binding apartados}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock >
-                                        <Run Text="{Binding id}"></Run>
-                                        <Run Text=" - "></Run>
-                                        <Run Text="{Binding titulo}"></Run>
-                                    </TextBlock>                    
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>  
-                    </TextBlock>                    
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
+        Title="Methodica - Panel de alumno" Height="850" Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+
+        
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="border" CornerRadius="5" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ButtonPrimaryStyle" TargetType="{x:Type Button}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#593196"/>
+                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="#593196"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FF6F35CD"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF6F35CD"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="Foreground" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border"
+                                Padding="0"
+                                Margin="0"
+                                SnapsToDevicePixels="true" 
+                                >
+
+                            <ContentPresenter />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#EFA31D"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsSelected" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="Border" Property="Background" Value="#FFF1BE63"/>
+                                </MultiTrigger.Setters>
+
+
+                            </MultiTrigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel Background="#593196">
+        <DockPanel DockPanel.Dock="Left" >
+            <Image Margin="0,20,0,0" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Source="../Resources/images/methodica_exams_logo_white.jpg" Height="70"></Image>
+
+            <DockPanel Background="#593196" DockPanel.Dock="Bottom" LastChildFill="False">
+                <StackPanel DockPanel.Dock="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Times New Roman"  Text="Alumno : " DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
+
+                        </TextBlock>
+                        <TextBlock FontFamily="Times New Roman"  Text="{Binding AlumnoLogueado.nombre}" Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Times New Roman"  Text="Usuario : " DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
+
+                        </TextBlock>
+                        <TextBlock FontFamily="Times New Roman"  Text="{Binding AlumnoLogueado.username}" Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left"></TextBlock>
+
+                    </StackPanel>
+                    </StackPanel>
+
+            </DockPanel>
+            <ListBox BorderThickness="0" Margin="0,35,0,0" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" DockPanel.Dock="Left" Padding="0"  x:Name="CursosMatriculadosListBox" ItemsSource="{Binding CursosMatriculados, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CursoSeleccionado,UpdateSourceTrigger=PropertyChanged}" Width="300" SelectionChanged="CursosMatriculadosListBox_SelectionChanged">
+
+                <ListBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Cursor="Hand">
+                            <TextBlock Text="{Binding nombre}" FontSize="30" FontWeight="Normal"  TextAlignment="Center" FontFamily="Times New Roman">
+                            </TextBlock>
+                        </DockPanel>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel>
+            <Button DockPanel.Dock="Top" FontSize="15" Foreground="White" Template="{DynamicResource ButtonTemplate}" x:Name="CerrarSesionButton" Margin="5,0" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CerrarSesionButton_Click">
+                <DockPanel Margin="0,10,0,0">
+                    <TextBlock Padding="5" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Bold">Cerrar sesión</TextBlock>
+                    <Image Source="../Resources/icons/logout.ico" Width="32"></Image>
+                </DockPanel>
+            </Button>
+            <TabControl Padding="0" Margin="0,42,0,0" >
+                <TabControl.Background>
+                    <ImageBrush ImageSource="../Resources/images/background_work.jpg" Stretch="UniformToFill"/>
+                </TabControl.Background>
+                <TabControl.Resources>
+                    <Style TargetType="TabControl">
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                    </Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" Margin="0" Padding="0" >
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#593196" />
+                                            <Setter Property="TextElement.Foreground" Value="White" />
+                                            <Setter Property="TextElement.FontWeight" Value="Bold" />
+                                            <Setter TargetName="Border" Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="White" />
+                                            <Setter TargetName="Border" Property="BorderThickness" Value="0" />
+                                            <Setter Property="TextElement.Foreground" Value="#593196" />
+                                            <Setter Property="TextElement.FontWeight" Value="Bold" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Cursor" Value="Hand" />
+
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Exámenes" FontSize="25" />
+
+                    </TabItem.Header>
+
+                    <DockPanel>
+
+                        <DockPanel>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <ItemsControl DockPanel.Dock="Left" x:Name="ExamenesItemsControl" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" Margin="50,40,50,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#593196" BorderThickness="3" CornerRadius="5" Margin="0,0,0,10" Background="White" >
+                                                <StackPanel>
+                                                    <Border Background="#EFA31D" CornerRadius="2,2,0,0">
+                                                        <TextBlock Text="{Binding temas.nombre}" FontSize="30" HorizontalAlignment="Center" Foreground="Black" FontWeight="Normal"  FontFamily="Times New Roman" >
+                                                        </TextBlock>
+                                                    </Border>
+                                                    <DockPanel VerticalAlignment="Center" Margin="5">
+                                                        <Button Template="{DynamicResource ButtonTemplate}" x:Name="RealizarExamen" Tag="{Binding id}" DockPanel.Dock="Right" Cursor="Hand" Height="32" Width="32" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="RealizarExamen_Click">
+                                                            <Image Source="../Resources/icons/edit.ico"></Image>
+                                                        </Button>
+                                                        <TextBlock FontSize="15" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal">
+                                                                <Run Text="Examen "></Run>
+                                                                <Run Text="{Binding temas.nombre,UpdateSourceTrigger=PropertyChanged}"></Run>
+                                                        </TextBlock>
+                                                    </DockPanel>
+                                                </StackPanel>
+                                            </Border>
+
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </DockPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Text="Notas" FontSize="25" />
+                    </TabItem.Header>
+                    <DockPanel Margin="50,20">
+                        <Border BorderThickness="3" CornerRadius="5" BorderBrush="#593196" Margin="50,0">
+
+                            <DockPanel Background="White">
+                                <Border BorderThickness="0,0,0,1" CornerRadius="2,2,0,0" BorderBrush="#593196" Background="#EFA31D" DockPanel.Dock="Top">
+                                    <TextBlock HorizontalAlignment="Center" FontSize="25" Foreground="Black" FontFamily="Times New Roman">
+                                    <Run Text="Notas - "></Run>
+                                    <Run Text="{Binding AlumnoLogueado.nombre}"></Run>
+                                    <Run Text="{Binding AlumnoLogueado.apellidos}"></Run>
+                                    <Run Text=" - "></Run>
+                                    <Run Text="{Binding CursoSeleccionado.nombre}"></Run>
+
+                                    </TextBlock>
+                                </Border>
+
+                                <DockPanel Margin="30">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="6*"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Border  Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,0,1">
+                                            <TextBlock  DockPanel.Dock="Right" Foreground="#593196" FontSize="30" Margin="5">Tema</TextBlock>
+                                        </Border>
+                                        <Border  Grid.Column="1" BorderBrush="Black" BorderThickness="0,1,1,1">
+                                            <TextBlock  DockPanel.Dock="Right" Foreground="#593196" FontSize="30" Margin="5">Nota</TextBlock>
+                                        </Border>
+
+                                        <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1,0,1,1">
+                                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                            <ItemsControl DockPanel.Dock="Left" x:Name="NotasItemsControl" ItemsSource="{Binding Notas, UpdateSourceTrigger=PropertyChanged}">
+                                                    
+                                                <ItemsControl.ItemTemplate>
+                                                    
+                                                        <DataTemplate>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="6*"/>
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <Border  Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,1,1">
+                                                                    <TextBlock Text="{Binding examenes.temas.nombre}" FontSize="20" Margin="5" HorizontalAlignment="Left" Foreground="Black" FontWeight="Normal"  FontFamily="Times New Roman" />
+                                                                </Border>
+
+                                                                <Border  Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,0,1">
+                                                                    <TextBlock Text="{Binding nota}" FontSize="20" DockPanel.Dock="Right" HorizontalAlignment="Center" Foreground="Black" FontWeight="Normal"  FontFamily="Times New Roman" Margin="5"/>
+                                                                </Border>
+                                                            </Grid>
+
+
+                                                        </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                        </Border>
+                                        
+                                    </Grid>
+
+
+                                    
+                                </DockPanel>
+
+                            </DockPanel>
+                        </Border>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        
+    </DockPanel>
 </Window>

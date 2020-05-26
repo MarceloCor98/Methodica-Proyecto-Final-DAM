@@ -27,7 +27,7 @@ namespace Methodica_Exams
         public Login()
         {
             InitializeComponent();
-            this.DataContext = new LoginVM(new usuarios());
+            this.DataContext = new LoginVM();
             BBDDService.CargarBD();
         }
 
@@ -37,36 +37,34 @@ namespace Methodica_Exams
 
             Autenticar();
 
-
-
         }
 
-       private void Autenticar()
+        private void Autenticar()
         {
-            
-            if ((this.DataContext as LoginVM).AutenticarUsuario(NombreUsuarioTextBox.Text, PasswordBox.Password))
+            if ((this.DataContext as LoginVM).Autenticar(NombreUsuarioTextBox.Text,PasswordBox.Password))
             {
 
-                if ((this.DataContext as LoginVM).usuarioLogueado.roles.Contains("ROLE_ADMIN") ||
-                    (this.DataContext as LoginVM).usuarioLogueado.roles.Contains("ROLE_PROFESOR"))
+                if ((this.DataContext as LoginVM).UsuarioLogueado.roles.Contains("ROLE_ADMIN") ||
+                    (this.DataContext as LoginVM).UsuarioLogueado.roles.Contains("ROLE_ALUMNO"))
                 {
-                    ProfesorVentana profesorVentana = new ProfesorVentana((this.DataContext as LoginVM).usuarioLogueado);
-                    profesorVentana.Show();
-                    
-                }
-                else
-                {
-                    AlumnoVentana alumnoVentana = new AlumnoVentana();
+                    AlumnoVentana alumnoVentana = new AlumnoVentana((this.DataContext as LoginVM).UsuarioLogueado);
                     alumnoVentana.Show();
                 }
+
+                if ((this.DataContext as LoginVM).UsuarioLogueado.roles.Contains("ROLE_ADMIN") ||
+                    (this.DataContext as LoginVM).UsuarioLogueado.roles.Contains("ROLE_PROFESOR"))
+                {
+                    ProfesorVentana profesorVentana = new ProfesorVentana((this.DataContext as LoginVM).UsuarioLogueado);
+                    profesorVentana.Show();
+
+                }
+
                 Close();
 
-            }
-            else
-            {
+            }else
                 // Mensaje de error de autenticación
                 ErrorAuthTextBlock.Visibility = Visibility.Visible;
-            }
+
         }
     }
 }

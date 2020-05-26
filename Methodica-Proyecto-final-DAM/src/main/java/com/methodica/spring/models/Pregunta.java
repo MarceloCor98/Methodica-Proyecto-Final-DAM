@@ -1,5 +1,6 @@
 package com.methodica.spring.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,9 +17,9 @@ public class Pregunta {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
+	@Column(length = 2000)
 	private String texto;
-	private int puntuacion;
+	private float puntuacion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_examen")
@@ -51,11 +52,11 @@ public class Pregunta {
 		this.texto = texto;
 	}
 
-	public int getPuntuacion() {
+	public float getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(int puntuacion) {
+	public void setPuntuacion(float puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 
@@ -73,7 +74,7 @@ public class Pregunta {
 		int result = 1;
 		result = prime * result + ((examen == null) ? 0 : examen.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + puntuacion;
+		result = prime * result + Float.floatToIntBits(puntuacion);
 		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
 		return result;
 	}
@@ -94,7 +95,7 @@ public class Pregunta {
 			return false;
 		if (id != other.id)
 			return false;
-		if (puntuacion != other.puntuacion)
+		if (Float.floatToIntBits(puntuacion) != Float.floatToIntBits(other.puntuacion))
 			return false;
 		if (texto == null) {
 			if (other.texto != null)
@@ -108,6 +109,8 @@ public class Pregunta {
 	public String toString() {
 		return "Pregunta [id=" + id + ", texto=" + texto + ", puntuacion=" + puntuacion + ", examen=" + examen + "]";
 	}
+	
+	
 	
 	
 }

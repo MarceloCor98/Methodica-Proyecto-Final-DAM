@@ -15,8 +15,8 @@ namespace Methodica_Exams.Model
     public partial class notas
     {
         public long id { get; set; }
-        public int nota { get; set; }
-        public Nullable<long> id_alumno { get; set; }
+        public float nota { get; set; }
+        public long id_alumno { get; set; }
         public Nullable<long> id_examen { get; set; }
     
         public virtual alumnos alumnos { get; set; }
