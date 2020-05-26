@@ -49,8 +49,6 @@ namespace Methodica_Exams.View
         {
             long idExamen = long.Parse((sender as Button).Tag.ToString());
             (this.DataContext as AlumnoVM).RealizarExamen(idExamen);
-                
-            
         }
     }
 }

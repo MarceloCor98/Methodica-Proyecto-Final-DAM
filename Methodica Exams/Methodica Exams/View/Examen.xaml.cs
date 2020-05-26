@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Methodica_Exams.View
 {
@@ -22,17 +23,50 @@ namespace Methodica_Exams.View
     /// </summary>
     public partial class Examen : Window
     {
+        DispatcherTimer timer;
+        TimeSpan time;
         public alumnos AlumnoLogueado { get; set; }
         public Examen(examenes examen, alumnos alumnoLogueado)
         {
             InitializeComponent();
             this.DataContext = new ExamenVM(examen,alumnoLogueado);
             AlumnoLogueado = alumnoLogueado;
+            time = TimeSpan.FromMinutes(examen.duracion);
+
+            timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                TiempoRestanteTextBlock.Text = time.ToString("c");
+                if (time == TimeSpan.Zero)
+                {
+                    timer.Stop();
+                    MessageBox.Show("Se acabó el tiempo","Examen terminado",MessageBoxButton.OK,MessageBoxImage.Information);
+                    TerminarExamen();
+                }
+
+                if(time == TimeSpan.FromMinutes(10))
+                    MessageBox.Show("Quedan 10 minutos", "Tiempo restante", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                time = time.Add(TimeSpan.FromSeconds(-1));
+            }, Application.Current.Dispatcher);
+
+            timer.Start();
         }
 
         private void EnviarExamenButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("¿Está seguro de terminar el examen?", "Terminar examen", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if(result == MessageBoxResult.Yes)
+            {
+                TerminarExamen();
+                Close();
+            }
+                
+        }
 
+        
+
+        public void TerminarExamen()
+        {
             // Para cada pregunta del examen encuentra su TextBox correspondiente donde se aloja la respuesta y de esta forma añadirla a su lista de respuestas
             foreach (preguntas p in (this.DataContext as ExamenVM).Examen.preguntas)
             {
@@ -41,10 +75,8 @@ namespace Methodica_Exams.View
 
                 string textoRespuesta = elements.First().Text;
 
-                (this.DataContext as ExamenVM).GuardarRespuesta(textoRespuesta,p);
-            }            
-            Close();
-            
+                (this.DataContext as ExamenVM).GuardarRespuesta(textoRespuesta, p);
+            }
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -65,6 +97,15 @@ namespace Methodica_Exams.View
                     }
                 }
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("¿Está seguro de terminar el examen?", "Terminar examen", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+                TerminarExamen();
+            else
+                e.Cancel = true;
         }
     }
 }

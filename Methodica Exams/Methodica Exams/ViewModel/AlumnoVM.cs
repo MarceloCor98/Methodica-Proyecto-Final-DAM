@@ -43,7 +43,7 @@ namespace Methodica_Exams.ViewModel
 
         public void CargarNotas()
         {
-            Notas = BBDDService.getNotasByCurso(CursoSeleccionado.id);
+            Notas = BBDDService.getNotasByCursoAlumno(CursoSeleccionado.id,AlumnoLogueado.id);
         }
 
         public void CargarExamenes()
@@ -53,13 +53,18 @@ namespace Methodica_Exams.ViewModel
 
         public void RealizarExamen(long idExamen)
         {
-            if(BBDDService.isExamenYaRealizadoPorAlumno(AlumnoLogueado,idExamen))
+            if (BBDDService.isExamenYaRealizadoPorAlumno(AlumnoLogueado,idExamen))
                 MessageBox.Show("Ya ha realizado este examen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
                 examenes examen = BBDDService.getExamenById(idExamen);
-                Examen examenVentana = new Examen(examen, AlumnoLogueado);
-                examenVentana.ShowDialog();
+                MessageBoxResult result = MessageBox.Show("¿Quiere comenzar el examen " + examen.temas.nombre + "?\nDuración : " + examen.duracion + " minutos\nNúmero de preguntas : " + examen.preguntas.Count, "Realizar examen", MessageBoxButton.YesNo,MessageBoxImage.Information);
+                if(result == MessageBoxResult.Yes)
+                {
+                    Examen examenVentana = new Examen(examen, AlumnoLogueado);
+                    examenVentana.ShowDialog();
+                }
+                
             }
             
         }

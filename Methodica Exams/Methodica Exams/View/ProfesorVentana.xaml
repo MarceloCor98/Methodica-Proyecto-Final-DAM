@@ -74,7 +74,7 @@
                         <Setter Property="Background" TargetName="border" Value="#13B955"/>
                     </MultiTrigger.Setters>
                 </MultiTrigger>
-                
+
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
                         <Condition Property="IsPressed" Value="True" />
@@ -102,69 +102,59 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <ControlTemplate x:Key="ButtonDeleteStyle" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="#FC3939" BorderThickness="{TemplateBinding BorderThickness}" Background="#FC3939" SnapsToDevicePixels="True">
+        <ControlTemplate x:Key="ButtonCorregido" TargetType="{x:Type Button}">
+            <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
             <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=activo}" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="Green"/>
+                <DataTrigger Binding="{Binding Path=corregido}" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Path=activo}" Value="False">
-                    <Setter Property="Background" TargetName="border" Value="Red"/>
-                </DataTrigger>
-                <Trigger Property="IsMouseOver" Value="True">
+                <DataTrigger Binding="{Binding Path=corregido}" Value="False">
                     <Setter Property="Background" TargetName="border" Value="#FC3939"/>
-                    <Setter Property="TextBlock.Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextBlock.Foreground" Value="#FC3939"/>
-                </Trigger>
+                </DataTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True" />
+                        <Condition Property="Background" Value="#13B955" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" TargetName="border" Value="#FC3939"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True" />
+                        <Condition Property="Background" Value="#FC3939" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsPressed" Value="True" />
+                        <Condition Property="Background" Value="#FC3939" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" TargetName="border" Value="#13B955"/>
+                        <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsPressed" Value="True" />
+                        <Condition Property="Background" Value="#13B955" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" TargetName="border" Value="#FC3939"/>
+                        <Setter Property="BorderBrush" TargetName="border" Value="#FC3939"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Background" TargetName="border" Value="#FC3939"/>
                     <Setter Property="BorderBrush" TargetName="border" Value="#FC3939"/>
-                </Trigger>
-                <Trigger Property="ToggleButton.IsChecked" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#FC3939"/>
-                    <Setter Property="BorderBrush" TargetName="border" Value="#FC3939"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" TargetName="border" Value="#FC3939"/>
-                    <Setter Property="BorderBrush" TargetName="border" Value="#FC3939"/>
-                    <Setter Property="Foreground" Value="#FF838383"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="ButtonConfirmStyle" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="#13B955" BorderThickness="{TemplateBinding BorderThickness}" Background="#13B955" SnapsToDevicePixels="True">
-                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </Border>
-            <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=activo}" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Path=activo}" Value="False">
-                    <Setter Property="Background" TargetName="border" Value="#FC3939"/>
-                </DataTrigger>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
-                    <Setter Property="TextBlock.Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="TextBlock.Foreground" Value="#FC3939"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
-                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
-                </Trigger>
-                <Trigger Property="ToggleButton.IsChecked" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
-                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" TargetName="border" Value="#13B955"/>
-                    <Setter Property="BorderBrush" TargetName="border" Value="#13B955"/>
-                    <Setter Property="Foreground" Value="#FF838383"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -214,7 +204,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
     </Window.Resources>
 
     <DockPanel Background="#593196">
@@ -225,10 +215,13 @@
             <DockPanel Background="#593196" DockPanel.Dock="Bottom" LastChildFill="False">
                 <StackPanel DockPanel.Dock="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Times New Roman"  Text="Alumno : " DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
+                        <TextBlock FontFamily="Times New Roman"  Text="Profesor : " DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
 
                         </TextBlock>
-                        <TextBlock FontFamily="Times New Roman"  Text="{Binding ProfesorLogueado.nombre}" Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock FontFamily="Times New Roman" Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
+                            <Run Text="{Binding ProfesorLogueado.nombre}"></Run>
+                            <Run Text="{Binding ProfesorLogueado.apellidos}"></Run>
+                        </TextBlock>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -347,13 +340,12 @@
                                                                     <Button Template="{DynamicResource ButtonTemplate}" x:Name="ConstruirExamenButton" Tag="{Binding id}" DockPanel.Dock="Right" Cursor="Hand" Height="32" Width="32" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ConstruirExamenButton_Click">
                                                                         <Image Source="../Resources/icons/edit.ico"></Image>
                                                                     </Button>
-                                                                    
+
 
 
                                                                     <TextBlock Style="{StaticResource ExamenActivoStyle}" FontSize="15" VerticalAlignment="Center" FontWeight="Normal">
-                                                                        
-                                                                <Run Text="Examen "></Run>
-                                                                <Run Text="{Binding temas.nombre,UpdateSourceTrigger=PropertyChanged}"></Run>
+                                                                        <Run Text="Examen "></Run>
+                                                                        <Run Text="{Binding temas.nombre,UpdateSourceTrigger=PropertyChanged}"></Run>
                                                                     </TextBlock>
                                                                 </DockPanel>
 
@@ -375,6 +367,52 @@
                     <TabItem.Header>
                         <TextBlock Text="Correciones" FontSize="25" />
                     </TabItem.Header>
+                    <DockPanel>
+
+                        <DockPanel>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden" BorderThickness="0">
+                                <ItemsControl x:Name="ExamenesParaCorregirItemsControl" DockPanel.Dock="Left" ItemsSource="{Binding CursoSeleccionado.examenes, UpdateSourceTrigger=PropertyChanged}" Margin="50,20,50,5">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Margin="0,0,0,10">
+                                                <Border DockPanel.Dock="Top" Background="#EFA31D" CornerRadius="2,2,0,0" BorderBrush="#593196" BorderThickness="3,3,3,0">
+                                                    <TextBlock x:Name="ExamenTextBlock"  Tag="{Binding id}" FontSize="30" HorizontalAlignment="Center" Foreground="Black" FontWeight="Normal"  FontFamily="Times New Roman" >
+                                                        <Run  Text="Examen - "></Run>
+                                                        <Run  Text="{Binding temas.nombre}"></Run>
+                                                    </TextBlock>
+                                                </Border>
+                                                <Border BorderBrush="#593196" BorderThickness="3,0,3,3" CornerRadius="0,0,5,5">
+                                                <ItemsControl ItemsSource="{Binding cursos.alumnos}" Background="White">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            
+                                                                <DockPanel VerticalAlignment="Center" Tag="{Binding id}" Margin="5">
+
+
+                                                                    <Button Template="{DynamicResource ButtonTemplate}" x:Name="CorregirExamenButton" Tag="{Binding ElementName=ExamenTextBlock, Path=Tag}" DockPanel.Dock="Right" Cursor="Hand" Height="32" Width="32" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CorregirExamenButton_Click">
+                                                                        <Image Source="../Resources/icons/edit.ico"></Image>
+                                                                    </Button>
+
+
+
+                                                                    <TextBlock x:Name="AlumnoTextBlock" Tag="{Binding id}" Foreground="Black" FontSize="15" VerticalAlignment="Center" FontWeight="Normal">
+                                                            <Run Text="{Binding apellidos,UpdateSourceTrigger=PropertyChanged}"></Run>
+                                                            <Run Text="{Binding nombre,UpdateSourceTrigger=PropertyChanged}"></Run>
+                                                                    </TextBlock>
+                                                                </DockPanel>
+                                                            
+                                                            
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                </Border>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </DockPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>

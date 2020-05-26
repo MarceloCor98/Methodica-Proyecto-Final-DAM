@@ -72,6 +72,14 @@ namespace Methodica_Exams.Services
             return alumno;
         }
 
+        public static alumnos getAlumnoById(long idAlumno)
+        {
+            var alumno = (from a in contexto.alumnos
+                          where a.id == idAlumno
+                          select a).First();
+            return alumno;
+        }
+
         // CURSOS
 
         public static ObservableCollection<cursos> getCursos()
@@ -165,11 +173,11 @@ namespace Methodica_Exams.Services
             Guardar();
         }
 
-        public static ObservableCollection<notas> getNotasByCurso(long idCurso)
+        public static ObservableCollection<notas> getNotasByCursoAlumno(long idCurso,long idAlumno)
         {
             var notas = (from n in contexto.notas
-                        where n.examenes.id_curso == idCurso && n.examenes.corregido
-                        select n);
+                        where n.examenes.id_curso == idCurso && n.alumnos.id == idAlumno
+                         select n);
             return new ObservableCollection<notas>(notas);
         }
 
@@ -179,6 +187,18 @@ namespace Methodica_Exams.Services
                          where n.examenes.id_tema == idTema && n.examenes.corregido
                          select n);
             return new ObservableCollection<notas>(notas);
+        }
+
+        public static notas GetNotaByExamenAlumno(examenes e, alumnos a)
+        {
+            var nota = (from n in contexto.notas
+                         where n.id_examen == e.id && n.id_alumno == a.id
+                         select n);
+            if (nota.Count() > 0)
+                return nota.First();
+            else
+                return null;
+
         }
 
         public static ObservableCollection<notas> getNotas()
@@ -208,6 +228,23 @@ namespace Methodica_Exams.Services
         {
             contexto.preguntas.Remove(pregunta);
             Guardar();
+        }
+        public static preguntas getPreguntaById(long idPregunta)
+        {
+            var pregunta = (from p in contexto.preguntas
+                        where p.id == idPregunta
+                            select p).First();
+            return pregunta;
+        }
+
+        public static ObservableCollection<respuestas> getRespuestasByExamenAndAlumno(long idExamen, long idAlumno)
+        {
+            var respuestas = (
+                from r in contexto.respuestas
+                where r.preguntas.id_examen == idExamen && r.id_alumno == idAlumno
+                select r);
+
+            return new ObservableCollection<respuestas>(respuestas);
         }
 
         public static void Guardar()

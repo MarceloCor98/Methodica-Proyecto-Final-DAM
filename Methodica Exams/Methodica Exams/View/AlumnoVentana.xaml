@@ -93,7 +93,10 @@
                         <TextBlock FontFamily="Times New Roman"  Text="Alumno : " DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
 
                         </TextBlock>
-                        <TextBlock FontFamily="Times New Roman"  Text="{Binding AlumnoLogueado.nombre}" Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock FontFamily="Times New Roman"   Margin="5,0" DockPanel.Dock="Top" Foreground="White" FontSize="20" HorizontalAlignment="Left">
+                            <Run Text="{Binding AlumnoLogueado.nombre}"></Run>
+                            <Run Text="{Binding AlumnoLogueado.apellidos}"></Run>
+                        </TextBlock>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

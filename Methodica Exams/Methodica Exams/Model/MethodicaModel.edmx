@@ -43,6 +43,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="activo" Type="bit" Nullable="false" />
           <Property Name="corregido" Type="bit" Nullable="false" />
+          <Property Name="duracion" Type="int" Nullable="false" />
           <Property Name="id_curso" Type="bigint" />
           <Property Name="id_tema" Type="bigint" />
         </EntityType>
@@ -67,11 +68,10 @@
         <EntityType Name="notas">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_alumno" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nota" Type="float" Nullable="false" />
-          <Property Name="id_alumno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_alumno" Type="bigint" />
           <Property Name="id_examen" Type="bigint" />
         </EntityType>
         <EntityType Name="preguntas">
@@ -231,7 +231,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKkpi11x15ctarnxg87ucpsjq2x">
-          <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
+          <End Role="alumnos" Type="Self.alumnos" Multiplicity="0..1" />
           <End Role="notas" Type="Self.notas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnos">
@@ -395,6 +395,7 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="corregido" Type="Boolean" Nullable="false" />
+          <Property Name="duracion" Type="Int32" Nullable="false" />
           <Property Name="id_curso" Type="Int64" />
           <Property Name="id_tema" Type="Int64" />
           <NavigationProperty Name="cursos" Relationship="Self.FKdxyjqsa3bfl43utxw2q19x689" FromRole="examenes" ToRole="cursos" />
@@ -416,11 +417,10 @@
         <EntityType Name="notas">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_alumno" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nota" Type="Single" Nullable="false" />
-          <Property Name="id_alumno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_alumno" Type="Int64" />
           <Property Name="id_examen" Type="Int64" />
           <NavigationProperty Name="alumnos" Relationship="Self.FKkpi11x15ctarnxg87ucpsjq2x" FromRole="notas" ToRole="alumnos" />
           <NavigationProperty Name="examenes" Relationship="Self.FKe5xd9gaehdea2fjedrvp2at5y" FromRole="notas" ToRole="examenes" />
@@ -495,7 +495,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKkpi11x15ctarnxg87ucpsjq2x">
-          <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
+          <End Role="alumnos" Type="Self.alumnos" Multiplicity="0..1" />
           <End Role="notas" Type="Self.notas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnos">
@@ -725,6 +725,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="corregido" ColumnName="corregido" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
                 <ScalarProperty Name="id_curso" ColumnName="id_curso" />
                 <ScalarProperty Name="id_tema" ColumnName="id_tema" />
               </MappingFragment>

@@ -41,6 +41,7 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="activo" ColumnName="activo" />
           <ScalarProperty Name="corregido" ColumnName="corregido" />
+          <ScalarProperty Name="duracion" ColumnName="duracion" />
           <ScalarProperty Name="id_curso" ColumnName="id_curso" />
           <ScalarProperty Name="id_tema" ColumnName="id_tema" />
         </MappingFragment>

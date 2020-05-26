@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Examen" Height="1080" Width="1920"
         WindowState="Maximized"
-        WindowStyle="None"
+        WindowStyle="None" Closing="Window_Closing"
         >
     <Window.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
@@ -115,7 +115,7 @@
                         <TextBlock FontSize="30" Foreground="White" Typography.Capitals="AllSmallCaps">
                             <Run Text="{Binding Examen.cursos.nombre}" ></Run>
                             <Run Text=" - "></Run>
-                            <Run Text="EXAMEN - "></Run>
+                            <Run Text="EXAMEN"></Run>
                             <Run Text="{Binding Examen.temas.nombre}"></Run>
 
                         </TextBlock>
@@ -125,9 +125,14 @@
                             <Run Text="{Binding AlumnoLogueado.apellidos}"></Run>
                         </TextBlock>
                     </StackPanel>
-
+                    
                     <Image Source="../Resources/images/methodica_logo_white.jpg" Height="70" HorizontalAlignment="Left"></Image>
-                </DockPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock FontSize="30" FontFamily="Times New Roman" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Tiempo restante :</TextBlock>
+                    <TextBlock x:Name="TiempoRestanteTextBlock" FontSize="30" FontFamily="Times New Roman" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                
+            </DockPanel>
 
             </Border>
             <Border BorderThickness="2" CornerRadius="5" BorderBrush="#593196" Margin="250,20">
@@ -138,7 +143,7 @@
                     </Border>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl x:Name="TemasItemsControl" ItemsSource="{Binding Examen.preguntas, UpdateSourceTrigger=PropertyChanged}" Margin="50">
+                    <ItemsControl x:Name="PreguntasItemControl" ItemsSource="{Binding Examen.preguntas, UpdateSourceTrigger=PropertyChanged}" Margin="50">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="10">

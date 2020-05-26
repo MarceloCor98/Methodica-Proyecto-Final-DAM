@@ -38,5 +38,19 @@ namespace Methodica_Exams.Model
         {
             public event PropertyChangedEventHandler PropertyChanged;
         }
+
+        public partial class notas : INotifyPropertyChanged
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+        }
+
+        public partial class preguntas : INotifyPropertyChanged
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+        }
+        public partial class respuestas : INotifyPropertyChanged
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+        }
     }
 }

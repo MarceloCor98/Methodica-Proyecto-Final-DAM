@@ -24,6 +24,7 @@ namespace Methodica_Exams.Model
         public long id { get; set; }
         public bool activo { get; set; }
         public bool corregido { get; set; }
+        public int duracion { get; set; }
         public Nullable<long> id_curso { get; set; }
         public Nullable<long> id_tema { get; set; }
     

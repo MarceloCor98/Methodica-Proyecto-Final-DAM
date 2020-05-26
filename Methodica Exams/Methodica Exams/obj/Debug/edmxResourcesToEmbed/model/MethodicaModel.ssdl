@@ -38,6 +38,7 @@
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="corregido" Type="bit" Nullable="false" />
+    <Property Name="duracion" Type="int" Nullable="false" />
     <Property Name="id_curso" Type="bigint" />
     <Property Name="id_tema" Type="bigint" />
   </EntityType>
@@ -62,11 +63,10 @@
   <EntityType Name="notas">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="id_alumno" />
     </Key>
-    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nota" Type="float" Nullable="false" />
-    <Property Name="id_alumno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_alumno" Type="bigint" />
     <Property Name="id_examen" Type="bigint" />
   </EntityType>
   <EntityType Name="preguntas">
@@ -226,7 +226,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FKkpi11x15ctarnxg87ucpsjq2x">
-    <End Role="alumnos" Type="Self.alumnos" Multiplicity="1" />
+    <End Role="alumnos" Type="Self.alumnos" Multiplicity="0..1" />
     <End Role="notas" Type="Self.notas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="alumnos">

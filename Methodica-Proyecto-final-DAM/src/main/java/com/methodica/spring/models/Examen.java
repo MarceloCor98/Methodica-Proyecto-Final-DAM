@@ -19,6 +19,7 @@ public class Examen {
 	private long id;
 	private boolean activo;
 	private boolean corregido;
+	private int duracion;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "id_tema", nullable = true)

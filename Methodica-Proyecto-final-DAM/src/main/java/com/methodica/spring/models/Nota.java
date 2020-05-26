@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="notas")
-@IdClass(NotaClave.class)
 public class Nota {
 	
 	@Id
@@ -25,7 +24,7 @@ public class Nota {
 	@JoinColumn(name = "id_examen")
 	private Examen examen;
 	
-	@Id
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_alumno")
 	private Alumno alumno;

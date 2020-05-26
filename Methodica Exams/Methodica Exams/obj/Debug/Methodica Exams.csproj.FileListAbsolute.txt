@@ -61,3 +61,6 @@ C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\sv\Xceed.Wpf.
 C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\Examen.g.cs
 C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\Examen.baml
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\Methodica Exams.csprojAssemblyReference.cache
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\CorregirExamen.g.cs
+C:\Users\Marcelo\Desktop\Methodica Exams\Methodica Exams\obj\Debug\View\CorregirExamen.baml

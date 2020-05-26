@@ -58,6 +58,8 @@ namespace Methodica_Exams.View
         {
             TemasItemsControl.DataContext = null;
             TemasItemsControl.DataContext = this.DataContext;
+            ExamenesParaCorregirItemsControl.DataContext = null;
+            ExamenesParaCorregirItemsControl.DataContext = this.DataContext;
         }
 
         private void CerrarSesionButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +75,14 @@ namespace Methodica_Exams.View
             long idExamen = long.Parse((sender as Button).Tag.ToString());
             (this.DataContext as ProfesorVM).ActivarDesactivarExamen(idExamen);
             Refrescar();
+        }
+
+        private void CorregirExamenButton_Click(object sender, RoutedEventArgs e)
+        {
+            long idAlumno = long.Parse(((sender as Button).Parent as DockPanel).Tag.ToString());
+            long idExamen = long.Parse((sender as Button).Tag.ToString());
+
+            (this.DataContext as ProfesorVM).CorregirExamen(idExamen,idAlumno);
         }
     }
 }

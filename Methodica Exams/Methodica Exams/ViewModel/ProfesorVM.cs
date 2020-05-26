@@ -62,5 +62,13 @@ namespace Methodica_Exams.ViewModel
             examen.activo = !examen.activo;
             BBDDService.Guardar();
         }
+
+        public void CorregirExamen(long idExamen, long idAlumno)
+        {
+            examenes examen = BBDDService.getExamenById(idExamen);
+            alumnos alumno = BBDDService.getAlumnoById(idAlumno);
+            CorregirExamen corregirVentana = new CorregirExamen(examen, alumno);
+            corregirVentana.ShowDialog();
+        }
     }
 }
