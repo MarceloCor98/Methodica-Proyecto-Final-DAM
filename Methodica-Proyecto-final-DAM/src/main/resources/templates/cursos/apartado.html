@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/miCss/inicio.css">
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-primary">
 			<div class="container">
 				<a class="navbar-brand mx-auto" href="/">
 					<img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
@@ -29,10 +29,14 @@
 		</nav>
 		<div class="container-fluid align-items-center ml-0 mr-0 ">
 			<div id="contenedorCursos" class="container-fluid row align-items-center  py-5 ml-0 mr-0">
-
-				<div class="container" th:object="${apartado}">
-					<h1 th:text="*{titulo}">TEMA + TITULO</h1>
-					<div th:utext="*{contenido}">CONTENIDO</div>
+				<div class="container bg-white border border-primary rounded-lg">
+					<a th:href="@{'/curso/' + ${apartado.tema.curso.id}}" th:text="${apartado.tema.curso.nombre}" class="text-decoration-none"></a>
+					<span> > </span>
+					<a th:href="@{'/curso/' + ${apartado.tema.curso.id}}" th:text="${apartado.tema.nombre}" class="text-decoration-none"></a>
+					<span> > </span>
+					<span th:text="${apartado.titulo}"></span>
+					<h1 th:text="${apartado.titulo}">TEMA + TITULO</h1>
+					<div th:utext="${apartado.contenido}">CONTENIDO</div>
 				</div>
 				
 					

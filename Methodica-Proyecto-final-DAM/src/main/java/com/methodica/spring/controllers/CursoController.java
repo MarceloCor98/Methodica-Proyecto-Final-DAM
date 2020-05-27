@@ -46,6 +46,18 @@ public class CursoController {
 	@Autowired
 	UsuarioServicio usuarioServicio;
 	
+	@PostMapping("/filtrarCursos")
+	public String filtrarCursos(Model model,@RequestParam("cursoFiltrado")String nombreCursoFiltrado) {
+		if(nombreCursoFiltrado.equals("")) {
+			
+			model.addAttribute("listaCursos",cursoServicio.findAll());
+			return "inicio";
+		}
+		List<Curso> cursosFiltrados = cursoServicio.findByNombre(nombreCursoFiltrado);
+		model.addAttribute("listaCursos",cursosFiltrados);
+		return "inicio";
+	}
+	
 	@GetMapping("/curso/{id}")
 	public String curso(Model model,@PathVariable Long id, Authentication auth) {
 		
@@ -97,12 +109,17 @@ public class CursoController {
 	}
 	
 	@PostMapping("/editarCurso/submit")
-	public String editarCursoSubmit(@ModelAttribute("curso") Curso cursoEditado,@RequestParam("idProfesor") long idProfesor) {
+	public String editarCursoSubmit(@ModelAttribute("curso") Curso cursoEditado,@RequestParam(name = "idProfesor",required=false,defaultValue = "-1") String idProfesor,Authentication auth) {
+		long id = Long.parseLong(idProfesor);
 		
-		Profesor p = profesorServicio.findById(idProfesor);
+		if( id != -1) {
+			Profesor p = profesorServicio.findById(id);
+			
+			cursoEditado.setProfesor(p);
+		}
 		
+		Profesor p = profesorServicio.findByUsername(auth.getName());
 		cursoEditado.setProfesor(p);
-		
 		cursoServicio.editar(cursoEditado);
 		
 		return "redirect:/inicio";			
@@ -113,6 +130,10 @@ public class CursoController {
 	
 	@GetMapping("/nuevoCurso")
 	public String nuevoCurso(Model model) {
+		
+		if(profesorServicio.findAll().size() == 0)
+			return "redirect:/registroProfesor";
+		
 		Profesor p = new Profesor();
 		Curso c = new Curso();
 		c.setProfesor(p);
@@ -127,7 +148,7 @@ public class CursoController {
 	public String nuevoCursoSubmit(@ModelAttribute Curso nuevoCurso,@RequestParam("idProfesor") long idProfesor) {
 		
 		Profesor p = profesorServicio.findById(idProfesor);
-		
+			
 		nuevoCurso.setProfesor(p);
 		
 		cursoServicio.insertar(nuevoCurso);

@@ -27,7 +27,7 @@
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="clave_matricula" Type="varchar" MaxLength="255" />
-    <Property Name="descripcion" Type="varchar" MaxLength="255" />
+    <Property Name="descripcion" Type="varchar" MaxLength="2000" />
     <Property Name="nombre" Type="varchar" MaxLength="255" />
     <Property Name="id_profesor" Type="bigint" />
   </EntityType>
@@ -96,7 +96,7 @@
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="puntuacion" Type="float" Nullable="false" />
-    <Property Name="texto" Type="varchar" MaxLength="255" />
+    <Property Name="texto" Type="varchar" MaxLength="2000" />
     <Property Name="id_alumno" Type="bigint" />
     <Property Name="id_pregunta" Type="bigint" />
   </EntityType>

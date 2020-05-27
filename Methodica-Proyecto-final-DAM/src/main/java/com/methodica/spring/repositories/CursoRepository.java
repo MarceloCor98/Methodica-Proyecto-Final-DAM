@@ -11,4 +11,6 @@ import com.methodica.spring.models.Profesor;
 @Repository
 public interface CursoRepository extends JpaRepository<Curso,Long>{
 	List<Curso> findByProfesor(Profesor profesor);
+	List<Curso> findByNombre(String nombre);
+	
 }

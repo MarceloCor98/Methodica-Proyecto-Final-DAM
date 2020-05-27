@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/miCss/login.css">
 		
 	</head>
-	<body>
+	<body class="d-flex flex-column">
 		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
 			<div class="container">
 				<a class="navbar-brand mx-auto" href="/">
@@ -20,21 +20,18 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active px-3"><a href="/inicio" class="nav-link letraBlanca" >INICIO</a></li>
 						<li class="nav-item active px-3"><a href="/registro" class="nav-link letraBlanca">REGISTRARSE</a></li>
+						<li class="nav-item active px-3" sec:authorize="isAuthenticated()"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link letraBlanca">SALIR</a></li>
 					</ul>
 				</div>
 			</div>
 			
 			
 		</nav>
-			<div id="contenedorFormulario" class="d-flex align-items-center ml-0 mr-0">
-				<div class="container-fluid col-3 ">
-					<form  th:action="@{/addAdmin/submit}" th:object="${adminUser}" method="post" class="bg-white py-5 px-5 border border-primary rounded">
+		<div class="w-100 h-100 d-flex flex-row align-items-start justify-content-center">
+			<div id="contenedorFormulario" class="mt-5 mx-0 col-3 d-flex flex-row">
+				<form  th:action="@{/addAdmin/submit}" th:object="${adminUser}" method="post" class="col-12 bg-white py-3 px-5 border border-primary rounded">
 
-						<h2 class="form-signin-heading">Nuevo administrador</h2>
-						<div th:each="e : ${errores}" class="text-danger">
-              				<span><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><span th:utext="${e}"></span></span>
-              
-            			</div>
+						<h2 class="form-signin-heading mt-3">Nuevo administrador</h2>
 						<div class="form-group">
 							<label for="username" >Nombre de usuario</label>
 							<input th:field="*{username}" type="text" id="adminUsername" name="adminUsername" class="form-control"
@@ -55,11 +52,14 @@
 							<input type="password" name="adminKey"  id="adminKey" class="form-control"
 							placeholder="" required>
 						</div>
-						<button class="btn btn-primary btn-lg btn-block" type="submit">Crear usuario</button>
+						<button class="btn btn-primary btn-lg btn-block mb-3" type="submit">Crear usuario</button>
 					</form>
-				</div>
-				
-				
 			</div>
+			<div class="mt-5 bg-white d-flex flex-column rounded-lg">
+		          <span th:each="e : ${errores}" class="px-3 pb-2 text-danger"><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><span th:utext="${e}"></span></span>
+		        </div>
+
+		</div>
+		<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
 	</body>
 </html>

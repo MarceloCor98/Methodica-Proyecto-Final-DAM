@@ -31,7 +31,7 @@
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="clave_matricula" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="id_profesor" Type="Int64" />
     <NavigationProperty Name="temas" Relationship="Self.FK5ncs2c7mkluqamgmduahhqaqh" FromRole="cursos" ToRole="temas" />
@@ -106,7 +106,7 @@
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="puntuacion" Type="Single" Nullable="false" />
-    <Property Name="texto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="texto" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="id_alumno" Type="Int64" />
     <Property Name="id_pregunta" Type="Int64" />
     <NavigationProperty Name="alumnos" Relationship="Self.FK656g3kvjfrvilc91vmqrk8tfo" FromRole="respuestas" ToRole="alumnos" />

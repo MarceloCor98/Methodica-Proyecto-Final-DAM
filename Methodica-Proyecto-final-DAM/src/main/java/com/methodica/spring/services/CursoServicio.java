@@ -42,6 +42,9 @@ public class CursoServicio {
 	public List<Curso> findByProfesor(Profesor profesor){
 		return cursoRepository.findByProfesor(profesor);
 	}
-		
+	public List<Curso> findByNombre(String nombre){
+		return cursoRepository.findByNombre(nombre);
+	}
+	
 	
 }

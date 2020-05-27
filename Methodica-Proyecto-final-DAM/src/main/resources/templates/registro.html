@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/miCss/login.css">
     
   </head>
-  <body>
+  <body class="d-flex flex-column">
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand mx-auto" href="/">
@@ -26,17 +26,13 @@
       
       
     </nav>
-    <div class="content">
-      <div id="contenedorFormulario" class="row align-items-center ml-0 mr-0">
-        <div class="container-fluid col-3 ">
-          <form  th:action="@{/registro/submit}" th:object="${alumno}" method="post" class="bg-white py-5 px-5 border border-primary rounded">
+    <div class="w-100 h-100 d-flex flex-row align-items-start justify-content-center">
+      <div id="contenedorFormulario" class="mt-3 mx-0 col-3 d-flex flex-row">
+          <form  th:action="@{/registro/submit}" th:object="${alumno}" method="post" class="col-12 bg-white py-3 px-5 border border-primary rounded">
 
-            <h2 class="form-signin-heading">Registrarse</h2>
+            <h2 class="form-signin-heading mt-3">Registrarse</h2>
 
-            <div th:each="e : ${errores}" class="text-danger">
-              <span><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><span th:utext="${e}"></span></span>
-              
-            </div>
+            
 
             <div class="form-group">
               <label for="username" >Nombre</label>
@@ -78,13 +74,12 @@
               required>
             </div>
 
-            <button class="btn btn-primary fondoMorado btn-lg btn-block" type="submit">Registrarse</button>
-          </form>
-        </div>
-        
-        
-        
+            <button class="btn btn-primary fondoMorado btn-lg btn-block mb-3" type="submit">Registrarse</button>
+          </form>          
       </div>
+      <div class="mt-3 bg-white d-flex flex-column rounded-lg">
+          <span th:each="e : ${errores}" class="px-3 pb-2 text-danger"><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><span th:utext="${e}"></span></span>
+        </div>
     </div>
   </body>
 </html>

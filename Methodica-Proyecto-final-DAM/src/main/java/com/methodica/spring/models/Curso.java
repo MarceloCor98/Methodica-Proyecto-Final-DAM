@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Curso {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String nombre;
+	@Column(length = 2000)
 	private String descripcion;
 	private String claveMatricula;
 		

@@ -6,9 +6,10 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/miCss/inicio.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand mx-auto" href="/">
           <img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
@@ -26,9 +27,9 @@
       
     </nav>
     <div class="content">
-      <div id="contenedorFormulario" class="row align-items-center ml-0 mr-0">
-        <div class="container-fluid col-8 ">
-          <form  th:action="@{/nuevoFichero/submit}" method="post" enctype="multipart/form-data" class="bg-white border border-primary rounded">
+      <div id="contenedorFormulario" class="mt-5">
+        <div class="container-fluid col-3 ">
+          <form  th:action="@{/nuevoFichero/submit}" method="post" enctype="multipart/form-data" class="p-5 bg-white border border-primary rounded">
             <h2 class="form-signin-heading" th:text="${accion}">Acción</h2>
 
             <input th:field="${tema.id}" id="idTema" name="idTema" type="hidden">

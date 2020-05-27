@@ -6,11 +6,12 @@
 
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/miCss/inicio.css">
 		
 		
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-primary">
 			<div class="container">
 				<a class="navbar-brand mx-auto" href="/">
 					<img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
@@ -29,7 +30,7 @@
 		</nav>
 		<div class="d-flex justify-content-end align-items-start p-5 m-0">
 			
-			<div id="contenedorCursos" class="p-3 mr-3 col-8 border border-primary rounded-lg">
+			<div id="contenedorCursos" class="p-3 mr-3 col-8 border border-primary rounded-lg bg-light">
 				<div class="">
 					<span class="d-flex justify-content-between align-items-center">
 						<span th:text="${curso.nombre}" class="display-2">NOMBRE DEL CURSO</span>

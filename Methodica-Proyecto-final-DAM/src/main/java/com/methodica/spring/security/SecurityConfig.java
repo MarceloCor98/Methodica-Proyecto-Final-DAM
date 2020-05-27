@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/registrProfesor","/nuevoCurso","/eliminarCurso/**","/editarCurso/**").hasRole("ADMIN")
 			.antMatchers("/nuevoTema/**","/editarTema/**","/eliminarTema/**",
 					"/nuevoApartado/**,/editarApartado/**","/eliminarApartado/**",
-					"/nuevoFichero/**","/eliminarFichero/**")
+					"/nuevoFichero/**","/eliminarFichero/**","/editarCurso/**")
 			.hasAnyRole("ADMIN","PROFESOR")
 			.antMatchers("/curso/**","/apartado/**","/descargarFichero/**").hasAnyRole("ADMIN","ALUMNO","PROFESOR")
 			.antMatchers("/","/login","/registro","/addAdmin","/addAdmin/submit").permitAll()

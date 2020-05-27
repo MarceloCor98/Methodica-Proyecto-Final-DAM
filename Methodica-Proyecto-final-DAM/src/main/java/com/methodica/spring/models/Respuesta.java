@@ -18,7 +18,7 @@ public class Respuesta {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
+	@Column(length = 2000)
 	private String texto;
 	private float puntuacion;
 	

@@ -6,9 +6,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/miCss/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/miCss/inicio.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand mx-auto" href="/">
           <img src="/images/methodica_logo_white.jpg" width="215" height="53" class="d-inline-block align-top" alt="methodica_logo">
@@ -24,10 +26,10 @@
       
       
     </nav>
-    <div class="content">
-      <div id="contenedorFormulario" class="row align-items-center ml-0 mr-0">
+    <div class="content w-100">
+      <div id="contenedorFormulario" class="mt-5">
         <div class="container-fluid col-8 ">
-          <form  th:action="${apartado.id != 0} ? @{/editarApartado/submit} : @{/nuevoApartado/submit}" th:object="${apartado}" method="post" class="bg-white border border-primary rounded">
+          <form  th:action="${apartado.id != 0} ? @{/editarApartado/submit} : @{/nuevoApartado/submit}" th:object="${apartado}" method="post" class="bg-white border border-primary rounded p-5">
 
             <h2 class="form-signin-heading" th:text="${accion}"></h2>
 

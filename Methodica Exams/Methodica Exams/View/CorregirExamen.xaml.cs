@@ -44,6 +44,7 @@ namespace Methodica_Exams.View
 
         private void NotaRespuesta_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
             var bc = new BrushConverter();
             (sender as TextBox).BorderBrush = (Brush)bc.ConvertFrom("#593196");
 

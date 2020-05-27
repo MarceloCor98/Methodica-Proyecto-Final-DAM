@@ -77,7 +77,7 @@ public class AdminController {
 			usuario.setRoles("ROLE_ADMIN");		
 			usuarioServicio.insertar(usuario);
 			
-			return "redirect:/inicio";
+			return "redirect:/login";
 		}
 		
 		

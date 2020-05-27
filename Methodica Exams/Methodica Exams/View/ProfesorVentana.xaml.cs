@@ -47,11 +47,16 @@ namespace Methodica_Exams.View
 
         private void EliminarExamenButton_Click(object sender, RoutedEventArgs e)
         {
-            long idExamen = long.Parse((sender as Button).Tag.ToString());
+            MessageBoxResult result = MessageBox.Show("¿Está seguro de eliminar el examen?", "Eliminar examen", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                long idExamen = long.Parse((sender as Button).Tag.ToString());
 
-            (this.DataContext as ProfesorVM).EliminarExamen(idExamen);
+                (this.DataContext as ProfesorVM).EliminarExamen(idExamen);
 
-            Refrescar();
+                Refrescar();
+            }
+                
         }
 
         public void Refrescar()

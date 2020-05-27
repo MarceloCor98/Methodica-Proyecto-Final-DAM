@@ -93,6 +93,9 @@ public class RegistroController {
 			errores.add("El usuario debe tener entre 6-14 caracteres y no contener espacios");
 		if(!validacionServicio.ValidarDni(profesor.getDni()) && !validacionServicio.ValidarNie(profesor.getDni()))
 			errores.add("El DNI/NIE no es correcto");
+		if(!validacionServicio.ValidarPasswordFormato(profesor.getPassword()))
+			errores.add("El formato de contraseña debe ser:<br>- Longitud : Al menos 8 caracteres<br>- Debe contener al menos un dígito"
+					+ "<br>- Debe contener al menos una letra mayúscula y una minúscula<br>- Debe contener al menos un caracter especial(@#$%^&+=)");
 		
 		if(errores.size() > 0) {
 			model.addAttribute("errores",errores);
